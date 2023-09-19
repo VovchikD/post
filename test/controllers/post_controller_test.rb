@@ -1,4 +1,4 @@
-require "test_helper"
+
 
 class PostControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
