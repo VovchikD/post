@@ -1,6 +1,8 @@
 inherit_from: .rubocop_todo.yml
 
-require: rubocop-rails
+require:
+  - rubocop-rails
+  - rubocop-performance
 AllCops:
   TargetRubyVersion: 3.0.6
   NewCops: enable
