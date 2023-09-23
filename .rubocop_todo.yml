@@ -35,11 +35,11 @@ Style/Documentation:
     - 'config/application.rb'
     - 'db/migrate/20230918113548_devise_create_users.rb'
 
-offense count: 35
-This cop supports unsafe autocorrection (--autocorrect-all).
-Configuration parameters: EnforcedStyle.
-SupportedStyles: always, always_true, never
-Style/FrozenStringLiteralComment:
+#offense count: 35
+#This cop supports unsafe autocorrection (--autocorrect-all).
+#Configuration parameters: EnforcedStyle.
+#SupportedStyles: always, always_true, never
+#Style/FrozenStringLiteralComment:
   Enabled: false
 
 # Offense count: 1
