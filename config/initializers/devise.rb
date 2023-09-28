@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Devise.setup do |config|
   config.sign_out_via = :get
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'

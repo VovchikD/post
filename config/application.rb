@@ -1,12 +1,14 @@
-require_relative "boot"
+# frozen_string_literal: true
 
-require "rails/all"
+require_relative 'boot'
+
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Post
+module Postapp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
@@ -18,5 +20,16 @@ module Post
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+  end
+end
+
+module YourCoolApp
+  class Application < Rails::Application
+    config.generators.after_generate do |files|
+      parsable_files = files.filter { |file| file.end_with?('.rb') }
+      unless parsable_files.empty?
+        system("bundle exec rubocop -A --fail-level=E #{parsable_files.shelljoin}", exception: true)
+      end
+    end
   end
 end
