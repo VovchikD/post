@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_27_182143) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_23_180006) do
   create_table "comments", force: :cascade do |t|
     t.text "content"
     t.integer "post_id", null: false
@@ -26,14 +26,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_27_182143) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "replies", force: :cascade do |t|
-    t.text "content"
-    t.integer "comment_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["comment_id"], name: "index_replies_on_comment_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -47,5 +39,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_27_182143) do
   end
 
   add_foreign_key "comments", "posts"
-  add_foreign_key "replies", "comments"
 end
