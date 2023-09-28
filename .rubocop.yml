@@ -9,7 +9,7 @@ AllCops:
   SuggestExtensions: false
 
 Style/Documentation:
-  Enabled: false
+  Enabled: true
 
 Style/FrozenStringLiteralComment:
-  Enabled: false
+  Enabled: true
