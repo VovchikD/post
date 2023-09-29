@@ -18,8 +18,8 @@ gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
-  gem 'rubocop-performance'
   gem 'rspec-rails', '~> 6.0.0'
+  gem 'rubocop-performance'
 end
 group :development do
   gem 'web-console'
