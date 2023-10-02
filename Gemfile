@@ -20,6 +20,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 group :development, :test do
   gem 'rspec-rails', '~> 6.0.0'
   gem 'rubocop-performance'
+  gem 'simplecov', require: :false
 end
 group :development do
   gem 'web-console'
@@ -28,3 +29,4 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
 end
+ 
