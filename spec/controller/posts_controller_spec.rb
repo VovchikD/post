@@ -2,26 +2,24 @@ require 'rails_helper'
 
 RSpec.describe 'Posts', type: :controller do
   let(:post) { { title: 'Post 1', body: 'Content 1' } }
-  it 'index' do
-    post1 = Post.all
-    expect(post1)
+  before do
+    @controller = PostsController.new
   end
 
-  it 'show' do
-    expect(post)
-  end
-
-  it 'new' do
-    post = Post.new
-    expect(post)
+  it 'renders to index' do
+    get :index
+    expect(response).to render_template(:index)
   end
 
   it 'create a new post' do
-    post = Post.new(post)
-    expect(post.save)
+    post_params = { title: 'Post new', body: 'Content 2' }
+    post = Post.new(post_params)
+    expect { post.save }.to
+    change(Post, :count).by(+1)
   end
 
   it 'destroy post' do
-    expect { post.destroy }
+    post1 = { title: 'Post 1', body: 'Content 1' }
+    expect { post1.destroy }
   end
 end

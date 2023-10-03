@@ -1,14 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe 'Comments_Controller', type: :controller do
-  it 'create a new comment' do
-    comment_value = { content: 'Valid comment' }
-    comment = Comment.new(comment_value)
+  let(:comment) { { content: 'a comment' } }
+  it 'create comment' do
+    comment = Comment.new
     expect { comment.save }
   end
-
   it 'destroy comment' do
-    comment = { content: 'Valid comment' }
-    expect { comment.destroy }
+    comment1 = { content: 'old comment' }
+    expect { comment1.destroy }
   end
 end

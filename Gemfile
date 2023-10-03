@@ -5,6 +5,7 @@ ruby '3.0.6'
 gem 'bootsnap', require: false
 gem 'devise', '~> 4.9'
 gem 'devise', '~> 4.9'
+gem 'figaro'
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'puma', '~> 5.0'
@@ -18,9 +19,10 @@ gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
+  gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 6.0.0'
   gem 'rubocop-performance'
-  gem 'simplecov', require: :false
+  gem 'simplecov', require: false
 end
 group :development do
   gem 'web-console'
@@ -29,4 +31,3 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
 end
- 
