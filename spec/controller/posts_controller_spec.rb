@@ -10,7 +10,7 @@ RSpec.describe 'Posts', type: :controller do
     expect(response).to render_template(:index)
   end
 
-  it 'action show' do  
+  it 'action show' do
     get :show, params: { id: post.id }
     expect(response)
   end
@@ -18,7 +18,7 @@ RSpec.describe 'Posts', type: :controller do
   it 'create a new post' do
     post_params = { title: 'Post new', body: 'Content 2' }
     post = Post.new(post_params)
-    expect { post.save }
+    expect { post.save }.to change(Post, :count).by(1)
   end
 
   it 'destroy post' do

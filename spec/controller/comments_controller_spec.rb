@@ -1,13 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe 'Comments_Controller', type: :controller do
-  let(:comment) { { content: 'a comment' } }
   it 'create comment' do
-    comment = Comment.new
-    expect { comment.save }
+    expect do
+      post :create, params: { comment: 'New Comment', post_id: post.id }
+    end
   end
   it 'destroy comment' do
-    comment1 = { content: 'old comment' }
-    expect { comment1.destroy }
+    expect do
+      delete :destroy, params: { id: comment.id }
+    end
   end
 end
