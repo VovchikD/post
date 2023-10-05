@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Posts', type: :controller do
+RSpec.describe 'PostsController', type: :controller do
   before do
     @controller = PostsController.new
   end

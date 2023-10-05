@@ -23,6 +23,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 6.0.0'
   gem 'rubocop-performance'
   gem 'simplecov', require: false
+  gem 'factory_bot_rails'
+  gem 'faker'
 end
 group :development do
   gem 'web-console'
