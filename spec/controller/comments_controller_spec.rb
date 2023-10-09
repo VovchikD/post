@@ -6,17 +6,15 @@ RSpec.describe 'CommentsController', type: :controller do
   let(:comment) { FactoryBot.create(:comment) }
 
   it 'creates a comment' do
-    expect do
+    expect do 
       post :create, params: { comment: { content: 'A comment' }, post_id: post.id }
-      created_comment = Comment.find(content: 'A comment')
-      created_comment.to be_present
-  end
+      expect(Comment.last).to be_present
+    end
 end
   it 'destroy comment' do
-    expect do
+    expect do 
       delete :destroy, params: { id: comment.id }
-      destroy_comment = Comment.find_by(id: comment.id)
-      destroyed_comment.to be_nil
-      end
+      expect(Comment.last).to be_nill
+    end
     end
 end

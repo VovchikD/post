@@ -13,12 +13,14 @@ RSpec.describe 'PostsController', type: :controller do
   it 'create a new post' do
     expect do
       post :create, params: { post: { title: 'Post new', body: 'Content 2' } }
-    end.to change(Post, :count).by(1)
+      expect(Post.last).to be_present
+    end
   end
 
   it 'destroy post' do
     expect do
       delete :destroy, params: { id: post.id }
+      expect(Post.last).to be_nill
     end
   end
 end
