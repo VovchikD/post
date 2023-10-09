@@ -11,16 +11,12 @@ RSpec.describe 'PostsController', type: :controller do
   end
 
   it 'create a new post' do
-    expect do
-      post :create, params: { post: { title: 'Post new', body: 'Content 2' } }
-      expect(Post.last).to be_present
-    end
+    post :create, params: { post: { title: 'Post new', body: 'Content 2' } }
+    expect(Post.last).to be_present
   end
 
   it 'destroy post' do
-    expect do
-      delete :destroy, params: { id: post.id }
-      expect(Post.last).to be_nill
-    end
+    delete :destroy, params: { id: post.id }
+    expect(Post.last).to be_nill
   end
 end
