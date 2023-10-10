@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe CommentsController, type: :controller do
-  let(:posts)    { FactoryBot.create(:post) }
-  let(:comment)  { FactoryBot.create(:comment, post: posts) }
+  let(:first_post)    { FactoryBot.create(:post) }
+  let(:comment)  { FactoryBot.create(:comment, post: first_post) }
 
   it 'creates a comment' do
-    post :create, params: { comment: { content: 'A comment' }, post_id: posts.id }
+    post :create, params: { comment: { content: 'A comment' }, post_id: first_post.id }
     expect(Comment.last).to be_present
   end
 

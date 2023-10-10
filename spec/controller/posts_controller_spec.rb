@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe PostsController, type: :controller do
+  let(:first_post)    { FactoryBot.create(:post) }
   it 'renders to index' do
     get :index
     expect(response).to render_template(:index)
@@ -12,8 +13,7 @@ RSpec.describe PostsController, type: :controller do
   end
 
   it 'destroy post' do
-    post = FactoryBot.create(:post)
-    delete :destroy, params: { id: post.id }
+    delete :destroy, params: { id: first_post.id }
     expect(Post.last).to be_nil
   end
 end
