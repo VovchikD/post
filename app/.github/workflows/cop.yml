@@ -1,0 +1,28 @@
+name: Cop
+
+on:
+  push:
+    branches: [ main ]
+  pull_requist:
+    branches: [ main ]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby-version: ['3.0.6']
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Ruby
+
+      uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf
+      with:
+        ruby-version: ${{ matrix.ruby-version }}
+    - name: Run rubocop
+      run: bundle exec rubocop -a
