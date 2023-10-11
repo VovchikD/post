@@ -6,13 +6,7 @@ on:
 
 jobs:
   rubocop:
-
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        ruby: ['3.0.6']
-    
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checks code
@@ -21,7 +15,7 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: ${{ matrix.ruby }}
+        ruby-version: '3.0.6'
         bundler-cache: true
 
     - name: Run rubocop
