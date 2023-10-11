@@ -1,28 +1,27 @@
-name: Ruby Test
+name: RSpec Test
 
 on:
-  push:
-    branches: [ CI/CD ]
-  pull_requist:
-    branches: [ CI/CD ]
-
-permissions:
-  contents: read
+  - push
+  - pull_request
 
 jobs:
   test:
 
-    runs-on: ubuntu-latest
     strategy:
+      fails-fast: false
       matrix:
-        ruby-version: ['3.0.6']
+        os: [ubuntu-latest]
+        ruby: 
+          - '3.0.6'
+    runs-os: ${{matrix.os}}
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4.1.0
     - name: Set up Ruby
+      uses: ruby/setup-ruby@v1.155.0
 
-      uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf
       with:
-        ruby-version: ${{ matrix.ruby-version }}
+        ruby-version: ${{ matrix.ruby }}
+        bundler-cache: true
     - name: Run test
       run: bundle exec rspec .
