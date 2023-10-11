@@ -1,28 +1,28 @@
-name: Cop
+name: Checks code
 
 on:
   push:
-    branches: [ CI/CD ]
-  pull_requist:
-    branches: [ CI/CD ]
-
-permissions:
-  contents: read
+  pull_request:
 
 jobs:
-  test:
+  rubocop:
 
-    runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ['3.0.6']
+        os: [ubuntu-latest]
+        ruby: ['3.0.6']
+    
+    runs-on: ${{ matrix.os }}
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Ruby
+    - name: Checks code
+      uses: actions/checkout@v2
 
-      uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
       with:
-        ruby-version: ${{ matrix.ruby-version }}
+        ruby-version: ${{ matrix.ruby }}
+        bundler-cache: true
+
     - name: Run rubocop
-      run: bundle exec rubocop -a
+      run: bundle exec rubocop
