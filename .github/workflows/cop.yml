@@ -16,5 +16,4 @@ jobs:
       with:
         ruby-version: '3.0.6'
 
-    - name: Run rubocop
       run: bundle exec rubocop

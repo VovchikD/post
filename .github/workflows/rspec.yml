@@ -20,5 +20,4 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby }}
 
-    - name: Run tests
       run: bundle exec rspec
