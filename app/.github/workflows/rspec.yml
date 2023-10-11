@@ -2,9 +2,9 @@ name: Ruby Test
 
 on:
   push:
-    branches: [ main ]
+    branches: [ CI/CD ]
   pull_requist:
-    branches: [ main ]
+    branches: [ CI/CD ]
 
 permissions:
   contents: read
