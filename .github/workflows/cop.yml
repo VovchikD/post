@@ -16,8 +16,6 @@ jobs:
       with:
         ruby-version: '3.0.6'
         bundler-cache: true
-      - run: echo $PATH | tr ':' '\n'
-      - run: bundle info rubocop
-      - run: gem which rubocop
-      - name: Run rubocop
-        run: rubocop --parallel
+
+    - name: Run rubocop
+      run: bundle exec rubocop
