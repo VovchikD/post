@@ -12,7 +12,7 @@
 <ul>
   <% @post.comments.each do |comment| %>
     <li><%= comment.content %></li>
-    <%= button_to "Destroy this comment",post_comment_path(@post, comment), method: :delete, class:"btn btn-sm btn-danger"%>
+    <%= button_to "Destroy this comment",post_comments_path(@post, comment), method: :delete, class:"btn btn-sm btn-danger"%>
   <% end %>
 </ul>
     <h5>It's comment</h5>
