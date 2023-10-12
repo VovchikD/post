@@ -1,22 +1,23 @@
-name: RuboCop
+name: Rubocop
 
 on: [push]
 
 jobs:
-  rubocop:
-    runs-on: ubuntu-latest
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        ruby: 
+          - '3.0.6'
+    rubs-on: ${{ matrix.os }}
 
     steps:
-    - name: Check code
-      uses: actions/checkout@v2
-
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: 3.0.6
-
-    - name: Install gem
-      run: gem install rubocop
-
-    - name: Run RuboCop
-      run: bundle exec rubocop
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - name: Run rubocop
+        run: bundle exec rubocop
