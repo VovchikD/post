@@ -10,7 +10,7 @@ jobs:
         os: [ubuntu-latest]
         ruby: 
           - '3.0.6'
-    rubs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v2
