@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe PostsController, type: :controller do
-  let(:first_post)    { FactoryBot.create(:post) }
+  let(:first_post) { FactoryBot.create(:post) }
   it 'renders to index' do
     get :index
     expect(response).to render_template(:index)

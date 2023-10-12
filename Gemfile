@@ -24,6 +24,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'rails-controller-testing'
+  gem 'rspec'
   gem 'rspec-rails', '~> 6.0.0'
   gem 'rubocop-performance'
   gem 'simplecov', require: false
