@@ -4,10 +4,11 @@ on: [push]
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    
+runs-on: ubuntu-latest
 
-  steps:
-    - name: Checkout repository
+    steps:
+    - name: Check code
       uses: actions/checkout@v2
 
     - name: Set up Ruby
@@ -16,9 +17,9 @@ jobs:
         ruby-version: 3.0.6
 
     - name: Install Bundler 
-    run: gem install bundler
+      run: gem install bundler
 
-    - name: Install project dependencies
+    - name: Install gem
       run: bundle install
 
     - name: Run RSpec Tests
