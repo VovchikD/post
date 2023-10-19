@@ -13,3 +13,6 @@ Style/Documentation:
 
 Style/FrozenStringLiteralComment:
   Enabled: true
+
+Rails/InverseOf:
+  Enabled: false
