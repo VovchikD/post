@@ -15,4 +15,15 @@ RSpec.describe CommentsController, type: :controller do
     delete :destroy, params: { id: comment.id }
     expect(Comment.last).to be_nil
   end
+
+  it 'creates a reply' do
+    post :create, params: { comment: { content: 'A reply', parent_id: comment.id },
+                            parent_id: comment.id, post_id: first_post.id }
+    expect(Comment.last).to be_present
+  end
+
+  it 'destroy reply' do
+    delete :destroy, params: { id: comment.id, parent_id: comment.id }
+    expect(Comment.last).to be_nil
+  end
 end
