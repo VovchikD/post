@@ -18,8 +18,9 @@ RSpec.describe CommentsController, type: :controller do
 
   it 'creates a reply' do
     post :create, params: { comment: { content: 'A reply', parent_id: comment.id },
-                            parent_id: comment.id, post_id: first_post.id }
-    expect(Comment.last).to be_present
+                            post_id: first_post.id }
+    created_reply = Comment.last
+    expect(created_reply.parent_id).to eq(comment.id)
   end
 
   it 'destroy reply' do
