@@ -4,7 +4,9 @@
 require 'spec_helper'
 require 'factory_bot_rails'
 require 'simplecov'
-SimpleCov.start
+SimpleCov.start do
+  add_filter '/config/application.rb'
+end
 
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'

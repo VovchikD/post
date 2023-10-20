@@ -9,9 +9,24 @@ RSpec.describe PostsController, type: :controller do
     expect(response).to render_template(:index)
   end
 
+  it 'find post by id' do
+    get :show, params: { id: first_post.id }
+    expect(assigns(:post)).to eq(first_post)
+  end
+
+  it 'be a new post' do
+    get :new
+    expect(assigns(:post)).to be_a_new(Post)
+  end
+
   it 'create a new post' do
     post :create, params: { post: { title: 'Post new', body: 'Content 2' } }
     expect(Post.last).to be_present
+  end
+
+  it 'renders the new template' do
+    get :new, params: { first_post: nil }
+    expect(response).to render_template(:new)
   end
 
   it 'destroy post' do
