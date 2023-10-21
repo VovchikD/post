@@ -22,6 +22,11 @@ RSpec.describe CommentsController, type: :controller do
     expect(Comment.last.parent_id).to eq(comment.id)
   end
 
+  it 'renders posts/show' do
+    post :create, params: { comment: { content: '' }, post_id: first_post.id }
+    expect(response).to render_template('posts/show')
+  end
+
   it 'destroy reply' do
     delete :destroy, params: { id: comment.id, parent_id: comment.id }
     expect(Comment.last).to be_nil

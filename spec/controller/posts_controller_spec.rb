@@ -24,8 +24,8 @@ RSpec.describe PostsController, type: :controller do
     expect(Post.last).to be_present
   end
 
-  it 'renders the new template' do
-    get :new, params: { first_post: nil }
+  it 'renders new' do
+    post :create, params: { post: { title: '', body: '' } }
     expect(response).to render_template(:new)
   end
 
