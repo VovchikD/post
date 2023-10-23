@@ -1,24 +1,33 @@
 <h1>It's post</h1>
-    <p>
-    <strong>Name:</strong>
-    <%= @post.title %>
-    </p>
+<p>
+  <strong>Name:</strong>
+  <%= @post.title %>
+</p>
 
-    <p>
-    <strong>Text:</strong>
-    <%= @post.body %>
-    </p>
-    <h3>Your comment:</h3>
+<p>
+  <strong>Text:</strong>
+  <%= @post.body %>
+</p>
+
+<h5>It's comment</h5>
 <ul>
-  <% @post.comments.each do |comment| %>
-    <li><%= comment.content %></li>
-    <%= button_to "Destroy this comment",post_comment_path(@post, comment), method: :delete, class:"btn btn-sm btn-danger"%>
+  <% @post.comments.where(parent_id: nil).each do |comment| %>
+    <li>
+      <p><%= comment.content %></p>
+      <ul>
+        <% comment.comments.each do |reply| %>
+          <li>
+            <p><%= reply.content %></p>
+          </li>
+          <%= button_to "Destroy this reply", [@post, reply], method: :delete, class: "btn btn-sm btn-danger" %>
+        <% end %>
+      </ul>
+    <%= render 'partial/form_reply', comment: comment%>
+    <%= button_to "Destroy this comment", [@post, comment], method: :delete, class: "btn btn-sm btn-danger" %>
   <% end %>
 </ul>
-    <h5>It's comment</h5>
-    <%= form_for([@post, @post.comments.build]) do |f| %>
-    <%= f.text_area :content, placeholder: 'Your comment...' %>
-    <%= f.submit 'Add comment', class:"btn btn-sm btn-outline-secondary" %>
-<% end %>
-    <%= link_to "Back to posts", root_path, class:"btn btn-sm btn-outline-secondary" %>
-    <%= button_to "Destroy this post", post_path(@post), method: :delete, class:"btn btn-sm btn-danger"%>
+<h3>Your comment:</h3>
+<%= render 'partial/form_comment' %>
+
+<%= link_to "Back to posts", root_path, class: "btn btn-sm btn-outline-secondary" %>
+<%= button_to "Destroy this post", post_path(@post), method: :delete, class: "btn btn-sm btn-danger" %>
