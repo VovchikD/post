@@ -1,0 +1,18 @@
+AllCops:
+  Include:
+    - "**/*.slim"
+
+Layout/Indentation:
+  Enabled: true
+  Include:
+    - "**/*.slim"
+  Config:
+    Width: 2
+
+Layout/EmptyLines:
+  Enabled: true
+  Include:
+    - "**/*.slim"
+
+Linter/HtmlTags:
+  Enabled: true
