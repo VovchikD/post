@@ -29,7 +29,7 @@ group :development, :test do
   gem 'rubocop-performance'
   gem 'simplecov', require: false
   gem 'slim_lint', '~> 0.24.0'
-  gem 'slim-rails'
+  gem 'slim-rails', '~> 3.6'
 end
 group :development do
   gem 'web-console'
