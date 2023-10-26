@@ -28,6 +28,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 6.0.0'
   gem 'rubocop-performance'
   gem 'simplecov', require: false
+  gem 'slim_lint', '~> 0.24.0'
+  gem 'slim-rails', '~> 3.6'
 end
 group :development do
   gem 'web-console'

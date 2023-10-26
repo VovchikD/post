@@ -1,0 +1,3 @@
+= form_for([@post, @post.comments.build]) do |f| 
+  = f.text_area :content, placeholder: 'Your comment...' 
+  = f.submit 'Add comment', class: 'btn btn-sm btn-outline-secondary' 
