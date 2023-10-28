@@ -1,21 +1,23 @@
-
-<div class="flex min-h-screen flex-col justify-center items-center px-8 py-12 lg:px-8">
+<div class="flex min-h-screen items-center justify-center">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-    <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
-    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Resend confirmation instructions</h2>
-  </div>
-</div>
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+    <div class="mx-auto mb-4">
+      <img class="mx-auto h-10 w-auto mb-4"" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
+      <h2 class="text-center text-3xl font-bold text-green">Welcome</h2>
+    </div>
+
+  <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"  %>
+  <div class="mt-4 sm:w-full sm:max-w-sm">
+    <%= f.label :email, class: "block text-sm font-medium leading-6 text-gray-900" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full py-2 px-3 border rounded-md focus:ring focus:ring-green-300" %>
   </div>
 
-  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-    <%= f.submit "Resend confirmation instructions", class: 'btn btn-primary'  %>
+  <div class="mt-4 sm:w-full sm:max-w-sm">
+    <%= f.submit "Resend confirmation instructions", class: "flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm leading-6 text-white shadow-sm hover:bg-indigo-500" %>
   </div>
-<% end %>
+  <% end %>
 
-<%= render "devise/shared/links" %>
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

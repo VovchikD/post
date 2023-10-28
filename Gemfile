@@ -30,6 +30,7 @@ group :development, :test do
   gem 'simplecov', require: false
   gem 'slim_lint', '~> 0.24.0'
   gem 'slim-rails', '~> 3.6'
+  gem "tailwindcss-rails", "~> 2.0"
 end
 group :development do
   gem 'web-console'
@@ -39,4 +40,4 @@ group :test do
   gem 'selenium-webdriver'
 end
 
-gem "tailwindcss-rails", "~> 2.0"
+
