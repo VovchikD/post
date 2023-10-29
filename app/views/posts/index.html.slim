@@ -1,6 +1,15 @@
-h1 Posts
-
+body class="antialiased md:bg-gray-100"
+div class="grid grid-cols-1 md:grid-cols-3 gap-3"
 - @posts.each do |post|
-  h2 class="text-2xl font-bold" = post.title
-  p class="text-grey-200"       = post.body
-  = link_to "Show", post, class: "btn btn-sm btn-outline-secondary"
+  div class="md:p-8 p-2 bg-white"
+  p class="text-indigo-500 font-semibold text-base mt-2 pl-4" Name:
+  h2 class="font-semibold text-gray-900 leading-none text-xl mt-1 capitalize truncate pl-12" = post.title
+  p class="text-indigo-500 font-semibold text-base mt-2 pl-4" Text:
+  div class="max-w-full"
+  p class="text-base font-medium tracking-wide text-gray-600 mt-1 pl-12" = post.body
+  = link_to "Show", post, class: "inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600"
+
+
+
+
+  
