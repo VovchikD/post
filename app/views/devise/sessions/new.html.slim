@@ -1,7 +1,7 @@
-.flex.min-h-screen.items-center.justify-center
+.flex.items-center.justify-center.mt-20
   .sm:mx-auto.sm:w-full.sm:max-w-sm
     .mx-auto.mb-4
-      |  <img class="mx-auto h-10 w-auto mb-4"" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company"> 
+      |  <img class="mx-auto h-10 w-auto mb-4"" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
       h2.text-center.text-3xl.font-bold.text-green
         | Come back
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
@@ -16,6 +16,6 @@
       - if devise_mapping.rememberable?
         .mt-4.sm:w-full.sm:max-w-sm
           = f.check_box :remember_me, class: "mt-2 text-center text-sm text-gray-500"
-          = f.label :remember_me, autocomplete: "current-password",class: "font-semibold text-indigo-600 hover:text-indigo-500"
+          = f.label :remember_me, autocomplete: "current-password", class: "font-semibold text-indigo-600 hover:text-indigo-500 ml-2"
       .mt-6.sm:w-full.sm:max-w-sm
         = f.submit "Log in", class: "flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm leading-6 text-white shadow-sm hover:bg-indigo-500"
