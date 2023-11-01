@@ -1,8 +1,16 @@
-= form_with model: @post do |form|
-  = form.label :title
-  = form.text_field :title
+.mt-20
+  = form_with model: @post do |form|
+    .mx-auto.max-w-md.mt-8
+      = form.label :Name, class: "block mb-2 text-sm font-bold text-black-900 dark:text-white"
+      = form.text_field :title, class:"block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
+              placeholder: "Write your title here..."
+      .mt-8
 
-  = form.label :body
-  = form.text_area :body
+      = form.label :Text, class:"block mb-2 text-sm font-bold text-black-900 dark:text-white"
+      = form.text_area :body, class:"block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
+                                 placeholder: "Write your thoughts here..."
 
-  = form.submit 'Create Post'
+      .mt-8
+      = form.submit 'Create Post', class: "flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm leading-6 text-white shadow-sm hover:bg-indigo-500"
+      = link_to raw('&#8592; Back'), :back
+

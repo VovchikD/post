@@ -1,0 +1,28 @@
+.flex.items-center.justify-center.mt-20
+  .sm:mx-auto.sm:w-full.sm:max-w-sm
+    .mx-auto.mb-4
+      |  <img class="mx-auto h-10 w-auto mb-4"" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
+      h2.text-center.text-3xl.font-bold.text-green
+        | Welcome
+    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      = render "devise/shared/error_messages", resource: resource
+      .mt-4.sm:w-full.sm:max-w-sm
+        = f.label :email, class: "block text-sm font-medium leading-6 text-gray-900"
+        br
+        = f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full py-2 px-3 border rounded-md focus:ring focus:ring-green-300"
+      .mt-4.sm:w-full.sm:max-w-sm
+        = f.label :password, class: "block text-sm font-medium leading-6 text-gray-900"
+        br
+        - if @minimum_password_length
+          em
+            | (
+            = @minimum_password_length
+            |  characters minimum)
+        br
+        = f.password_field :password, autocomplete: "current-password", class: "w-full py-2 px-3 border rounded-md focus:ring focus:ring-green-300"
+      .mt-10.sm:mx-auto.sm:w-full.sm:max-w-sm
+        = f.label :password_confirmation, class: "block text-sm font-medium leading-6 text-gray-900"
+        br
+        = f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full py-2 px-3 border rounded-md focus:ring focus:ring-green-300"
+      .mt-6.sm:w-full.sm:max-w-sm
+        = f.submit "Sign up", class: "flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm leading-6 text-white shadow-sm hover:bg-indigo-500"
