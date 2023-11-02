@@ -4,7 +4,11 @@ class CommentsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
-    if @comment.save
+    if @comment.save  
+      author = @comment.post.user_id
+      unless author == @comment.user_id
+        CommentMailer.new_comment(author, @comment).deliver_now
+      end
       redirect_to @post
     else
       render 'posts/show'

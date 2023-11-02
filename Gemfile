@@ -31,6 +31,7 @@ group :development, :test do
   gem 'slim_lint', '~> 0.24.0'
   gem 'slim-rails', '~> 3.6'
   gem 'tailwindcss-rails', '~> 2.0'
+  gem 'letter_opener'
 end
 group :development do
   gem 'web-console'
