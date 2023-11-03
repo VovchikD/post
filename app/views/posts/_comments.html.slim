@@ -3,7 +3,7 @@
     .text-base.tracking-tight.text-gray-900.dark:text-white = comment.content
 
     - comment.comments.each do |reply|
-      = render partial: 'reply', locals: { reply: reply }
+      = render partial: 'posts/reply', locals: { reply: reply }
 
     .flex.items-center.py-2.px-3.bg-gray-50.rounded-lg.dark:bg-gray-700
       = form_for([@post, comment.comments.build]) do |f|
