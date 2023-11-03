@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     @comment = @post.comments.build(comment_params)
     if @comment.save  
       author = @comment.post.user_id
-      unless author == @comment.user_id
+      unless author = @comment.user_id
         CommentMailer.new_comment(author, @comment).deliver_later
       end
       redirect_to @post
