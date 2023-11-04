@@ -8,6 +8,7 @@ RSpec.describe CommentsController, type: :controller do
   let(:comment) { FactoryBot.create(:comment, post: first_post, user: user) }
 
   it 'creates a comment' do
+    sign_in(user)
     post :create, params: { comment: { content: 'A comment' }, post_id: first_post.id, user_id: user.id }
     expect(Comment.last).to be_present
   end
@@ -15,9 +16,9 @@ RSpec.describe CommentsController, type: :controller do
   it 'send an email to the post author' do
     mail = CommentMailer.new_comment(user, comment)
     expect(mail.subject).to eq('New massege under your post')
-    expect {
+    expect do
       mail.deliver_now
-    }.to change(ActionMailer::Base.deliveries, :count).by(1)
+    end.to change(ActionMailer::Base.deliveries, :count).by(1)
   end
 
   it 'destroy comment' do
@@ -26,6 +27,7 @@ RSpec.describe CommentsController, type: :controller do
   end
 
   it 'creates a reply' do
+    sign_in(user)
     post :create, params: { comment: { content: 'A reply', parent_id: comment.id },
                             post_id: first_post.id }
     expect(Comment.last.parent_id).to eq(comment.id)

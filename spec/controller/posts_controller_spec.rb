@@ -3,6 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe PostsController, type: :controller do
+  let(:user) { FactoryBot.create(:user) }
   let(:first_post) { FactoryBot.create(:post) }
   it 'renders to index' do
     get :index
@@ -20,6 +21,7 @@ RSpec.describe PostsController, type: :controller do
   end
 
   it 'create a new post' do
+    sign_in(user)
     post :create, params: { post: { title: 'Post new', body: 'Content 2' } }
     expect(Post.last).to be_present
   end
