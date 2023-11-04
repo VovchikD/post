@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 class CommentMailer < ApplicationMailer
-
   def new_comment(user, comment)
     @comment = comment
     mail(
       to: user.email,
-      subject: 'New comment your post'
+      subject: 'New massege under your post'
     )
   end
 end

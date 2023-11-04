@@ -3,21 +3,21 @@
 require 'rails_helper'
 
 RSpec.describe CommentsController, type: :controller do
-  let(:first_post) { FactoryBot.create(:post) }
-  let(:comment) { FactoryBot.create(:comment, post: first_post) }
-  let(:post_author) { create(:user) }
-  let(:second_post) { create(:post, user_id: post_author) }
-  
+  let(:user) { FactoryBot.create(:user) }
+  let(:first_post) { FactoryBot.create(:post, user: user) }
+  let(:comment) { FactoryBot.create(:comment, post: first_post, user: user) }
 
   it 'creates a comment' do
-    post :create, params: { comment: { content: 'A comment' }, post_id: first_post.id }
+    post :create, params: { comment: { content: 'A comment' }, post_id: first_post.id, user_id: user.id }
     expect(Comment.last).to be_present
   end
 
   it 'send an email to the post author' do
-    sign_in post_author
-      post :create, params: { post_id: second_post.id, comment: { content: 'A comment' } }
-      expect(ActionMailer::Base.deliveries.size).to be_present
+    mail = CommentMailer.new_comment(user, comment)
+    expect(mail.subject).to eq('New massege under your post')
+    expect {
+      mail.deliver_now
+    }.to change(ActionMailer::Base.deliveries, :count).by(1)
   end
 
   it 'destroy comment' do

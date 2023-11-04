@@ -23,6 +23,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'letter_opener', '~> 1.8.1'
   gem 'rails-controller-testing'
   gem 'rspec'
   gem 'rspec-rails', '~> 6.0.0'
@@ -31,7 +32,6 @@ group :development, :test do
   gem 'slim_lint', '~> 0.24.0'
   gem 'slim-rails', '~> 3.6'
   gem 'tailwindcss-rails', '~> 2.0'
-  gem 'letter_opener', '~> 1.8.1'
 end
 group :development do
   gem 'web-console'

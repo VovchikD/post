@@ -16,3 +16,12 @@ Style/FrozenStringLiteralComment:
 
 Rails/InverseOf:
   Enabled: false
+
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
