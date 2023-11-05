@@ -21,16 +21,17 @@ Rails/I18nLocaleTexts:
   Enabled: false
 
 Metrics/BlockLength:
-  Enabled: false
+  Enabled: true
+  Max: 35
 
 Metrics/MethodLength:
-  Enabled: false
+  Enabled: true
 
 Style/ParenthesesAroundCondition:
-  Enabled: false
+  Enabled: true
 
 Style/IfUnlessModifier:
-  Enabled: false
+  Enabled: true
 
-Metrics/AbcSize:
+Naming/MemoizedInstanceVariableName: 
   Enabled: false
