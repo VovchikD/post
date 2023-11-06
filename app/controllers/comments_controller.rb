@@ -6,8 +6,7 @@ class CommentsController < ApplicationController
   def create
     @comment = @post.comments.build(comment_params.merge(user: current_user))
     if @comment.save
-      author = @comment.post.user
-      CommentMailer.new_comment(author, @comment).deliver_later unless author == @comment.user
+      author
       redirect_to post_path(@post)
     else
       render 'posts/show'
@@ -21,6 +20,11 @@ class CommentsController < ApplicationController
   end
 
   private
+
+  def author
+    author = @comment.post.user
+    CommentMailer.new_comment(author, @comment).deliver_later unless author == @comment.user
+  end
 
   def find_post
     @post ||= Post.find(params[:post_id])
