@@ -7,10 +7,7 @@ Rails.application.configure do
   config.eager_load = false
   config.consider_all_requests_local = true
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  configure_mailer_settings(config.action_mailer)
-  configure_caching_settings(config)
   config.active_storage.service = :local
-  configure_database_and_logging(config)
   config.server_timing = true
   config.assets.quiet = true
   config.active_support.deprecation = :log
