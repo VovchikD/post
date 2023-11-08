@@ -34,8 +34,8 @@ Style/IfUnlessModifier:
   Enabled: true
 
 Naming/MemoizedInstanceVariableName: 
-  Enabled: false
-  Include:
+  Enabled: true
+  Exclude:
     - 'app/controllers/**'
 
 Metrics/AbcSize:
