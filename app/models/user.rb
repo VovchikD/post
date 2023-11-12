@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  has_many :post,    dependent: :destroy
-  has_many :comment, dependent: :destroy
+  has_many :posts,    dependent: :destroy, foreign_key: :user_id
+  has_many :comments, dependent: :destroy, foreign_key: :user_id
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+          :recoverable, :rememberable, :validatable
 end

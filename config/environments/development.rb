@@ -13,6 +13,10 @@ Rails.application.configure do
   config.active_support.deprecation = :log
   config.active_support.disallowed_deprecation = :raise
   config.active_support.disallowed_deprecation_warnings = []
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.perform_caching = false
 
   if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true
@@ -25,13 +29,6 @@ Rails.application.configure do
     config.action_controller.perform_caching = false
     config.cache_store = :null_store
   end
-end
-
-def configure_mailer_settings(action_mailer)
-  action_mailer.delivery_method = :letter_opener
-  action_mailer.perform_deliveries = true
-  action_mailer.raise_delivery_errors = false
-  action_mailer.perform_caching = false
 end
 
 def configure_database_and_logging(config)

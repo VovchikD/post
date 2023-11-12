@@ -13,12 +13,10 @@ RSpec.describe CommentsController, type: :controller do
     expect(Comment.last).to be_present
   end
 
-  it 'send an email to the post author' do
-    mail = CommentMailer.new_comment(user, comment)
-    expect(mail.subject).to eq('New massege under your post')
-    expect do
-      mail.deliver_now
-    end.to change(ActionMailer::Base.deliveries, :count).by(1)
+  it 'send an email when add comment to post' do
+    expect {
+      post :create, params: {  comment: { content: 'A comment' }, post_id: first_post.id }
+    }.to change(ActionMailer::Base.deliveries, :count).by(1)
   end
 
   it 'destroy comment' do

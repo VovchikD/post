@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
   private
 
   def author
-    @author ||= @comment.post.user
+    @post.user
   end
 
   def find_post
