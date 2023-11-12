@@ -3,20 +3,26 @@
 require 'rails_helper'
 
 RSpec.describe CommentsController, type: :controller do
-  let(:user) { FactoryBot.create(:user) }
-  let(:first_post) { FactoryBot.create(:post, user: user) }
-  let(:comment) { FactoryBot.create(:comment, post: first_post, user: user) }
+  let(:user) { create(:user) }
+  let(:first_post) { create(:post, user: user) }
+  let(:comment) { create(:comment, post: first_post, user: user) }
+
+  before { sign_in(user) }
 
   it 'creates a comment' do
-    sign_in(user)
     post :create, params: { comment: { content: 'A comment' }, post_id: first_post.id, user_id: user.id }
     expect(Comment.last).to be_present
   end
 
-  it 'send an email when add comment to post' do
-    expect {
-      post :create, params: {  comment: { content: 'A comment' }, post_id: first_post.id }
-    }.to change(ActionMailer::Base.deliveries, :count).by(1)
+  context 'when enter by another user' do
+    let(:commentator) { create(:user) }
+
+    it 'sends an email from another user' do
+      sign_in(commentator)
+      expect do
+        post :create, params: { comment: { content: 'A comment' }, post_id: first_post.id }
+      end.to change(ActionMailer::Base.deliveries, :count).by(1)
+    end
   end
 
   it 'destroy comment' do
@@ -25,7 +31,6 @@ RSpec.describe CommentsController, type: :controller do
   end
 
   it 'creates a reply' do
-    sign_in(user)
     post :create, params: { comment: { content: 'A reply', parent_id: comment.id },
                             post_id: first_post.id }
     expect(Comment.last.parent_id).to eq(comment.id)

@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.6'
+ruby '3.2.2'
 gem 'bootsnap', require: false
 gem 'devise', '~> 4.9'
 gem 'importmap-rails'
