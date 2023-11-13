@@ -17,6 +17,8 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.perform_caching = false
+  config.active_record.migration_error = :page_load
+  config.active_record.verbose_query_logs = true
 
   if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true
@@ -29,9 +31,4 @@ Rails.application.configure do
     config.action_controller.perform_caching = false
     config.cache_store = :null_store
   end
-end
-
-def configure_database_and_logging(config)
-  config.active_record.migration_error = :page_load
-  config.active_record.verbose_query_logs = true
 end

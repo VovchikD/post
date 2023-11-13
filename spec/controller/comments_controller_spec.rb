@@ -4,8 +4,8 @@ require 'rails_helper'
 
 RSpec.describe CommentsController, type: :controller do
   let(:user) { create(:user) }
-  let(:first_post) { create(:post, user: user) }
-  let(:comment) { create(:comment, post: first_post, user: user) }
+  let(:first_post) { create(:post, user:) }
+  let(:comment) { create(:comment, post: first_post, user:) }
 
   before { sign_in(user) }
 

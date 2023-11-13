@@ -4,7 +4,7 @@ require:
   - rubocop-rails
   - rubocop-performance
 AllCops:
-  TargetRubyVersion: 3.0.6
+  TargetRubyVersion: 3.2.2
   NewCops: enable
   SuggestExtensions: false
 
@@ -23,6 +23,8 @@ Rails/I18nLocaleTexts:
 Metrics/BlockLength:
   Enabled: true
   Max: 35
+  Exclude:
+    - 'config/environments/**'
 
 Metrics/MethodLength:
   Enabled: true
