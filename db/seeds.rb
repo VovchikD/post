@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
-User.create(
-  email: 'user@example.com',
-  password: '1234567890'
-)
+user = User.create(email: Faker::Internet.email, password: '123456')
 
 10.times do
-  Post.create(title: Faker::Hipster.sentences.sample, body: Faker::Hipster.sentences.sample)
+  user.posts.create(title: Faker::Hipster.sentence, body: Faker::Hipster.sentence)
 end

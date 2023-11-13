@@ -10,7 +10,7 @@ RSpec.describe CommentsController, type: :controller do
   before { sign_in(user) }
 
   it 'creates a comment' do
-    post :create, params: { comment: { content: 'A comment' }, post_id: first_post.id, user_id: user.id }
+    post :create, params: { comment: { content: 'A comment' }, post_id: first_post.id }
     expect(Comment.last).to be_present
   end
 
