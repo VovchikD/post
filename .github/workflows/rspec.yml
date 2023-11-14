@@ -1,13 +1,16 @@
 name: RSpec Tests
 
-on:
-  push:
-    branches:
-      - main
+on: [push]
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        ruby: 
+          - '3.2.2'
+    runs-on: ${{ matrix.os }}
 
     services:
       postgres:
@@ -23,17 +26,17 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
+      - uses: actions/checkout@v2
       - name: Set up Ruby
-        uses: ruby/setup-ruby@v2
+        uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2.2
+          ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
 
-      - name: Install Dependencies
-        run: bundle install
-
       - name: Setup and Migrate Database
-        run: bundle exec rake db:setup RAILS_ENV=test
+        run: |
+          bundle install
+          bundle exec rake db:setup RAILS_ENV=test
 
       - name: Run RSpec Tests
         run: bundle exec rspec
