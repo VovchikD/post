@@ -154,6 +154,7 @@ GEM
     parser (3.2.2.4)
       ast (~> 2.4.1)
       racc
+    pg (1.5.4)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -276,8 +277,6 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    sqlite3 (1.6.8-x86_64-darwin)
-    sqlite3 (1.6.8-x86_64-linux)
     stimulus-rails (1.3.0)
       railties (>= 6.0.0)
     tailwindcss-rails (2.0.32-x86_64-darwin)
@@ -324,6 +323,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   letter_opener (~> 1.8.1)
+  pg
   pry-byebug
   puma (~> 5.0)
   rails (~> 7.0.8)
@@ -338,7 +338,6 @@ DEPENDENCIES
   slim-rails (~> 3.6)
   slim_lint (~> 0.24.0)
   sprockets-rails
-  sqlite3 (~> 1.4)
   stimulus-rails
   tailwindcss-rails (~> 2.0)
   turbo-rails
