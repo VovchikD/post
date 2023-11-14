@@ -3,12 +3,26 @@
 require 'rails_helper'
 
 RSpec.describe CommentsController, type: :controller do
-  let(:first_post) { FactoryBot.create(:post) }
-  let(:comment) { FactoryBot.create(:comment, post: first_post) }
+  let(:user) { create(:user) }
+  let(:first_post) { create(:post, user:) }
+  let(:comment) { create(:comment, post: first_post, user:) }
+
+  before { sign_in(user) }
 
   it 'creates a comment' do
     post :create, params: { comment: { content: 'A comment' }, post_id: first_post.id }
     expect(Comment.last).to be_present
+  end
+
+  context 'when enter by another user' do
+    let(:commentator) { create(:user) }
+
+    it 'sends an email from another user' do
+      sign_in(commentator)
+      expect do
+        post :create, params: { comment: { content: 'A comment' }, post_id: first_post.id }
+      end.to change(ActionMailer::Base.deliveries, :count).by(1)
+    end
   end
 
   it 'destroy comment' do

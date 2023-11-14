@@ -3,7 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe PostsController, type: :controller do
+  let(:user) { FactoryBot.create(:user) }
   let(:first_post) { FactoryBot.create(:post) }
+
+  before do
+    sign_in(user)
+  end
+
   it 'renders to index' do
     get :index
     expect(response).to render_template(:index)

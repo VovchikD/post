@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.6'
+ruby '3.2.2'
 gem 'bootsnap', require: false
 gem 'devise', '~> 4.9'
 gem 'importmap-rails'
@@ -23,6 +23,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'letter_opener', '~> 1.8.1'
   gem 'rails-controller-testing'
   gem 'rspec'
   gem 'rspec-rails', '~> 6.0.0'

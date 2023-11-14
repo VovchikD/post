@@ -4,7 +4,7 @@ require:
   - rubocop-rails
   - rubocop-performance
 AllCops:
-  TargetRubyVersion: 3.0.6
+  TargetRubyVersion: 3.2.2
   NewCops: enable
   SuggestExtensions: false
 
@@ -16,3 +16,29 @@ Style/FrozenStringLiteralComment:
 
 Rails/InverseOf:
   Enabled: false
+
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: true
+  Max: 35
+  Exclude:
+    - 'config/environments/**'
+
+Metrics/MethodLength:
+  Enabled: true
+
+Style/ParenthesesAroundCondition:
+  Enabled: true
+
+Style/IfUnlessModifier:
+  Enabled: true
+
+Naming/MemoizedInstanceVariableName: 
+  Enabled: true
+  Exclude:
+    - 'app/controllers/**'
+
+Metrics/AbcSize:
+  Enabled: true
