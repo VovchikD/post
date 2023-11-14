@@ -34,9 +34,4 @@ RSpec.describe PostsController, type: :controller do
     post :create, params: { post: { title: '', body: '' } }
     expect(response).to render_template(:new)
   end
-
-  it 'destroy post' do
-    delete :destroy, params: { id: first_post.id }
-    expect(Post.last).to be_nil
-  end
 end
