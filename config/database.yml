@@ -15,7 +15,10 @@ development:
 test:
   <<: *default
   database: Postapp_test
+  username: volodymyr
+  password: '654321'
   host: localhost
+  port: 5432
 
 production:
   <<: *default
