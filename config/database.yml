@@ -4,8 +4,9 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
   username: volodymyr
-  password: 654321
+  password: '654321'
   host: localhost
+  port: 5432
 
 development:
   <<: *default
