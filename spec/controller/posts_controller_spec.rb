@@ -5,6 +5,7 @@ require 'rails_helper'
 RSpec.describe PostsController, type: :controller do
   let(:user) { create(:user) }
   let(:first_post) { create(:post) }
+  let(:second_post) { create(:post) }
 
   before do
     sign_in(user)
@@ -34,14 +35,9 @@ RSpec.describe PostsController, type: :controller do
     post :create, params: { post: { title: '', body: '' } }
     expect(response).to render_template(:new)
   end
-  
-  context 'create new post' do 
-    let(:second_post) { create(:post) }
 
-    it 'destroy post' do
-      expect {
-        delete :destroy, params: { id: second_post.id }
-      }.to change(Post, :count).by(0)
-    end
+  it 'destroy post' do
+    delete :destroy, params: { id: second_post.id }
+    expect(Post.last).to be_nil
   end
 end
