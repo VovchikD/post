@@ -5,7 +5,6 @@ require 'rails_helper'
 RSpec.describe PostsController, type: :controller do
   let(:user) { create(:user) }
   let(:first_post) { create(:post) }
-  let(:second_post) { create(:post) }
 
   before do
     sign_in(user)
@@ -37,7 +36,7 @@ RSpec.describe PostsController, type: :controller do
   end
 
   it 'destroy post' do
-    delete :destroy, params: { id: second_post.id }
+    delete :destroy, params: { id: first_post.id }
     expect(Post.last).to be_nil
   end
 end
