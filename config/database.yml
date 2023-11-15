@@ -1,0 +1,27 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%=  ENV["POSTGRES_USER"].presence || "default" %>
+  timeout: 5000
+  username: volodymyr
+  password: '654321'
+  host: localhost
+  port: 5432
+
+development:
+  <<: *default
+  database: postapp_dev
+  pool: 10
+
+test:
+  <<: *default
+  database: postapp_test
+  username: volodymyr
+  password: '654321'
+  host: localhost
+  port: 5432
+  pool: 10
+
+production:
+  <<: *default
+  database: postapp_prod

@@ -9,7 +9,7 @@ gem 'bootsnap', require: false
 gem 'devise', '~> 4.9'
 gem 'importmap-rails'
 gem 'jbuilder'
-gem 'pg','~> 1.5.4'
+gem 'pg', '~> 1.5.4'
 gem 'pry-byebug'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 7.0.8'
