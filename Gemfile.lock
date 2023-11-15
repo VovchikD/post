@@ -323,7 +323,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   letter_opener (~> 1.8.1)
-  pg
+  pg (~> 1.5.4)
   pry-byebug
   puma (~> 5.0)
   rails (~> 7.0.8)
