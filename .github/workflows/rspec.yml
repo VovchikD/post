@@ -36,6 +36,7 @@ jobs:
         env:
           POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
           POSTGRES_PASWORD: ${{ secrets.POSTGRES_PASWORD }}
+          POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }} 
 
       - name: Run RSpec Tests
         run: bundle exec rspec
