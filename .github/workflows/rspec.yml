@@ -16,8 +16,8 @@ jobs:
       postgres:
         image: postgres:latest
         env:
-          POSTGRES_USER: $default
-          POSTGRES_PASSWORD: $default
+          POSTGRES_USER: default
+          POSTGRES_PASSWORD: default
           POSTGRES_DB: postapp_test
         ports:
           - 5432:5432
