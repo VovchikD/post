@@ -16,8 +16,8 @@ jobs:
       postgres:
         image: postgres:latest
         env:
-          POSTGRES_USER: volodymyr
-          POSTGRES_PASSWORD: 654321
+          POSTGRES_USER: <%= ENV["POSTGRES_USER"] %>
+          POSTGRES_PASSWORD: <%= ENV["POSTGRES_PASSWORD"] %>
           POSTGRES_DB: Postapp_test
         ports:
           - 5432:5432
