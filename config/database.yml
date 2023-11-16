@@ -3,25 +3,18 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
-  username: <%= ENV["POSTGRES_USER"].presence || "default" %>
-  password: <%= ENV["POSTGRES_PASSWORD"].presence || "default" %>
-  host: localhost
-  port: 5432
+  username: <%= ENV.fetch("POSTGRES_USER") { "default" } %>
+  password: <%= ENV.fetch("POSTGRES_PASSWORD") { "default" } %>
+  host: <%= ENV.fetch("POSTGRES_LOCALHOST") { "default" } %>
+  port: <%= ENV.fetch("POSTGRES_PORT") { "5432" } %>
 
 development:
   <<: *default
   database: postapp_dev
-  host: localhost
-  port: 5432
-  pool: 10
-  
 
 test:
   <<: *default
   database: postapp_test
-  host: localhost
-  port: 5432
-  pool: 10
 
 production:
   <<: *default

@@ -16,9 +16,9 @@ jobs:
       postgres:
         image: postgres:latest
         env:
-          POSTGRES_USER: $POSTGRES_USER
-          POSTGRES_PASSWORD: $POSTGRES_PASSWORD
-          POSTGRES_DB: Postapp_test
+          POSTGRES_USER: $default
+          POSTGRES_PASSWORD: $default
+          POSTGRES_DB: postapp_test
         ports:
           - 5432:5432
 
@@ -33,6 +33,9 @@ jobs:
       - name: Setup and Migrate Database
         run: |
           bundle exec rake db:setup
+        env:
+          POSTGRES_USER: ${{ POSTGRES_USER }}
+          POSTGRES_PASWORD: ${{ POSTGRES_PASWORD }}
 
       - name: Run RSpec Tests
         run: bundle exec rspec
