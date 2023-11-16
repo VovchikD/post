@@ -34,9 +34,8 @@ jobs:
         run: |
           bundle exec rake db:setup
         env:
-          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
-          POSTGRES_PASWORD: ${{ secrets.POSTGRES_PASWORD }}
-          POSTGRES_LOCALHOST: ${{ secrets.POSTGRES_LOCALHOST }}
+          POSTGRES_USER: default
+          POSTGRES_PASSWORD: default
 
       - name: Run RSpec Tests
         run: bundle exec rspec
