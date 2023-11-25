@@ -1,17 +1,19 @@
+# frozen_string_literal: true
+
 class LikesController < ApplicationController
   def create
     @like = current_user.likes.new(likes_params)
     if @like.save
       redirect_to @like.target
     else
-      puts @like.errors.full_messages
+      Rails.logger.debug @like.errors.full_messages
     end
   end
 
   def destroy
-    @like = Like.find(params[:id])
+    @like = current_user.likes.find(params[:id])
     if @like.destroy
-      redirect_to root_path
+      redirect_to @like.target
     else
       flash[:alert] = 'Like not found'
     end

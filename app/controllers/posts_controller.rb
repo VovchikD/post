@@ -9,7 +9,6 @@ class PostsController < ApplicationController
 
   def show
     @post_likes_count = Like.where(target_id: @post.id).count
-    @comment_likes_count = Like.where(target_id: @post.comments.pluck(:id)).count
   end
 
   def new
