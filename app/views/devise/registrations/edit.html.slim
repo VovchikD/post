@@ -3,7 +3,7 @@
     .mx-auto.mb-4
       |  <img class="mx-auto h-10 w-auto mb-4"" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company"> 
       h2.text-center.text-3xl.font-bold.text-green
-        | Editor
+        | Your profile 
     = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
       = render "devise/shared/error_messages", resource: resource
       .mt-4.sm:w-full.sm:max-w-sm
@@ -29,6 +29,14 @@
         = f.label :password_confirmation, class: "block text-sm font-medium leading-6 text-gray-900"
         br
         = f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full py-2 px-3 border rounded-md focus:ring focus:ring-green-300"
+      mt-4.sm:w-full.sm:max-w-sm.font-bold.flex.items-center
+        = f.label "Count like with posts", class: "text-dark"
+        span.ml-auto.text-right
+          = @user.liked_posts.count
+      .mt-4.sm:w-full.sm:max-w-sm.font-bold.flex.items-center
+        = f.label "Count like with comments", class: "text-dark"
+        span.ml-auto.text-right
+          = @user.liked_comments.count
       .mt-10.sm:mx-auto.sm:w-full.sm:max-w-sm
         = f.label :current_password
         i
