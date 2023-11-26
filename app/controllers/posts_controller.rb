@@ -7,9 +7,7 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
-  def show
-    @post_likes_count = Like.where(target_id: @post.id).count
-  end
+  def show; end
 
   def new
     @post = Post.new

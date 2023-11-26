@@ -7,6 +7,4 @@ class Comment < ApplicationRecord
   has_many   :comments, class_name: 'Comment',   foreign_key: :parent_id, dependent: :destroy
   has_many :likes, as: :target, dependent: :destroy
   validates :content, presence: true
-
-  delegate :count, to: :likes, prefix: true
 end

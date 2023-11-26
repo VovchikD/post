@@ -15,9 +15,9 @@
           = f.hidden_field :target_type, value: "Post"
         .actions
           svg.w-5.h-5.mt-1
-          = f.submit "Like #{@post_likes_count}", class: "text-white cursor-pointer bg-blue-700 dark:hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          = f.submit "Like #{@post.likes.count}", class: "text-white cursor-pointer bg-blue-700 dark:hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
     - else
-      = button_to "Unlike #{@post_likes_count}", like_path(like), method: :delete, class: "text-white cursor-pointer bg-blue-700 dark:hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" 
+      = button_to "Unlike #{@post.likes.count}", like_path(like), method: :delete, class: "text-white cursor-pointer bg-blue-700 dark:hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" 
       
     div.mt-12
       = render partial: 'posts/comments'

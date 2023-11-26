@@ -14,11 +14,13 @@ RSpec.describe LikesController, type: :controller do
   it 'add a new like to post' do
     post :create, params: { like: { target_id: first_post.id, target_type: 'Post' } }
     expect(user.likes.count).to eq(1)
+    expect(Like.last.target_id).to eq(first_post.id)
   end
 
   it 'add a new like to comment' do
     post :create, params: { like: { target_id: comment.id, target_type: 'Comment' } }
     expect(user.likes.count).to eq(1)
+    expect(Like.last.target_id).to eq(comment.id)
   end
 
   it 'delete like from post' do
