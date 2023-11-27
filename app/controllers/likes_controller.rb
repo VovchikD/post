@@ -6,7 +6,7 @@ class LikesController < ApplicationController
     if @like.save
       redirect_to @like.target
     else
-      flash[:alert] = 'Like not add'
+      flash[:alert] = @like.errors.full_messages
     end
   end
 
