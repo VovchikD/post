@@ -1,6 +1,18 @@
 - @post.comments.where(parent_id: nil).each do |comment|
   .block.max-w-lg.p-6.bg-white.border.border-gray-200.rounded-lg.shadow.dark:bg-gray-800.dark:border-gray-700.dark:hover-bg-gray-700.mt-5
     .text-base.tracking-tight.text-gray-900.dark:text-white = comment.content
+    - like = current_user.likes.find_by(target: comment)
+
+    - if like.nil?
+      = form_for([current_user.likes.new]) do |f|
+        .field
+          = f.hidden_field :target_id, value: comment.id
+          = f.hidden_field :target_type, value: "Comment"
+        .actions
+          svg.w-5.h-5.mt-1
+          = f.submit "Like #{comment.likes.count}", class: "text-white cursor-pointer bg-blue-700 dark:hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+    - else
+      = button_to "Unlike #{comment.likes.count}", like_path(like), method: :delete, class: "text-white cursor-pointer bg-blue-700 dark:hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" 
 
     - comment.comments.each do |reply|
       = render partial: 'posts/reply', locals: { reply: reply }
