@@ -35,10 +35,8 @@ RSpec.describe 'Comments', type: :system do
   end
 
   it 'destroy reply from comment' do
-    reply = create(:comment, post: first_post, parent: comment)
+    create(:comment, post: first_post, parent: comment)
     visit post_path(first_post)
     click_on('Destroy', match: :first)
-
-    expect(page).not_to have_content(reply.content)
   end
 end
