@@ -9,7 +9,7 @@ SimpleCov.start do
   add_filter '/config/application.rb'
 end
 Capybara.register_driver :selenium do |app|
-  Capybara::Selenium::Driver.new(app, browser: :safari)
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: Selenium::WebDriver::Chrome::Options.new(args: ['headless', 'disable-gpu', 'no-sandbox']))
 end
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
