@@ -4,6 +4,7 @@
 require 'spec_helper'
 require 'factory_bot_rails'
 require 'simplecov'
+require 'capybara/rspec'
 SimpleCov.start do
   add_filter '/config/application.rb'
 end
