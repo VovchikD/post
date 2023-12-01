@@ -8,6 +8,9 @@ require 'capybara/rspec'
 SimpleCov.start do
   add_filter '/config/application.rb'
 end
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome, driver_path: '/usr/local/bin/chromedriver')
+end
 
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'

@@ -25,6 +25,7 @@ Metrics/BlockLength:
   Max: 35
   Exclude:
     - 'config/environments/**'
+    - 'spec/system/comments_spec.rb'
 
 Metrics/MethodLength:
   Enabled: true
