@@ -28,4 +28,13 @@ RSpec.describe 'Posts', type: :system do
     expect(page).not_to have_content(post.title)
     expect(page).not_to have_content(post.body)
   end
+
+  it 'validates post' do
+    visit new_post_path
+    fill_in 'post_title', with: 'x' * 201
+    fill_in 'post_body', with: 'x' * 201
+    click_on('Create Post')
+
+    expect(Post.count).to eq(0)
+  end
 end
