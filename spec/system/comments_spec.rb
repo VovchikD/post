@@ -8,6 +8,7 @@ RSpec.describe 'Comments', type: :system do
   let(:comment) { create(:comment, post: first_post, user:) }
 
   before do
+    driven_by :chrome
     sign_in user
   end
 

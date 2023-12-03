@@ -6,6 +6,7 @@ RSpec.describe 'Posts', type: :system do
   let(:user) { create(:user) }
 
   before do
+    driven_by :chrome
     sign_in user
   end
 
