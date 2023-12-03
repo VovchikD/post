@@ -9,6 +9,7 @@ RSpec.describe 'Likes', type: :system do
   let(:like_post) { create(:like, :with_post, user:) }
 
   before do
+    driven_by :chrome
     sign_in user
   end
 
