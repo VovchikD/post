@@ -8,13 +8,16 @@ require 'capybara/rspec'
 SimpleCov.start do
   add_filter '/config/application.rb'
 end
-Capybara.register_driver :chrome do |app|
-  options = Selenium::WebDriver::Chrome::Options.new
-  options.add_argument('--no-sandbox')
-  options.add_argument('--disable-dev-shm-usage')
-
-  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
-end
+System.setProperty("webdriver.chrome.driver", "C:/usr/local/bin/chromedriver");
+ChromeOptions options = new ChromeOptions();
+options.addArguments("start-maximized"); // open Browser in maximized mode
+options.addArguments("disable-infobars"); // disabling infobars
+options.addArguments("--disable-extensions"); // disabling extensions
+options.addArguments("--disable-gpu"); // applicable to windows os only
+options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
+options.addArguments("--no-sandbox"); // Bypass OS security model
+WebDriver driver = new ChromeDriver(options);
+driver.get("https://google.com");
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 abort('The Rails environment is running in production mode!') if Rails.env.production?
