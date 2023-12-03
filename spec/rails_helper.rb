@@ -8,17 +8,6 @@ require 'capybara/rspec'
 SimpleCov.start do
   add_filter '/config/application.rb'
 end
-Capybara.register_driver :chrome do |app|
-  options = Selenium::WebDriver::Chrome::Options.new
-  options.add_argument('start-maximized')
-  options.add_argument('disable-infobars')
-  options.add_argument('--disable-extensions')
-  options.add_argument('--disable-gpu')
-  options.add_argument('--disable-dev-shm-usage')
-  options.add_argument('--no-sandbox')
-
-  Capybara::Selenium::Driver.new(app, browser: :chrome, options:)
-end
 
 Capybara.javascript_driver = :chrome
 ENV['RAILS_ENV'] ||= 'test'
