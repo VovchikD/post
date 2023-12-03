@@ -8,16 +8,19 @@ require 'capybara/rspec'
 SimpleCov.start do
   add_filter '/config/application.rb'
 end
-System.setProperty("webdriver.chrome.driver", "C:/usr/local/bin/chromedriver");
-ChromeOptions options = new ChromeOptions();
-options.addArguments("start-maximized"); // open Browser in maximized mode
-options.addArguments("disable-infobars"); // disabling infobars
-options.addArguments("--disable-extensions"); // disabling extensions
-options.addArguments("--disable-gpu"); // applicable to windows os only
-options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
-options.addArguments("--no-sandbox"); // Bypass OS security model
-WebDriver driver = new ChromeDriver(options);
-driver.get("https://google.com");
+Capybara.register_driver :chrome do |app|
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.add_argument('start-maximized')
+  options.add_argument('disable-infobars')
+  options.add_argument('--disable-extensions')
+  options.add_argument('--disable-gpu')
+  options.add_argument('--disable-dev-shm-usage')
+  options.add_argument('--no-sandbox')
+
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options:)
+end
+
+Capybara.javascript_driver = :chrome
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 abort('The Rails environment is running in production mode!') if Rails.env.production?
