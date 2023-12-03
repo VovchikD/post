@@ -9,11 +9,11 @@ require 'selenium-webdriver'
 SimpleCov.start do
   add_filter '/config/application.rb'
 end
-Capybara.register_driver :selenium_chrome do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome)
+Capybara.register_driver :selenium_chrome_headless do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: Selenium::WebDriver::Chrome::Options.new(args: ['--headless', '--disable-gpu']))
 end
 
-Capybara.javascript_driver = :selenium_chrome
+Capybara.javascript_driver = :selenium_chrome_headless
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 abort('The Rails environment is running in production mode!') if Rails.env.production?
