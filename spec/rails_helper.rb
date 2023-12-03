@@ -5,11 +5,15 @@ require 'spec_helper'
 require 'factory_bot_rails'
 require 'simplecov'
 require 'capybara/rspec'
+require 'selenium-webdriver'
 SimpleCov.start do
   add_filter '/config/application.rb'
 end
+Capybara.register_driver :selenium_chrome do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
 
-Capybara.javascript_driver = :chrome
+Capybara.javascript_driver = :selenium_chrome
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 abort('The Rails environment is running in production mode!') if Rails.env.production?
