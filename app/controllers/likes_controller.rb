@@ -4,7 +4,7 @@ class LikesController < ApplicationController
   def create
     @like = current_user.likes.new(likes_params)
     if @like.save
-      redirect_to @like.target
+      redirect_after_like(@like)
     else
       flash[:alert] = @like.errors.full_messages
     end
@@ -13,7 +13,7 @@ class LikesController < ApplicationController
   def destroy
     @like = current_user.likes.find(params[:id])
     if @like.destroy
-      redirect_to @like.target
+      redirect_after_like(@like)
     else
       flash[:alert] = 'Like not found'
     end
@@ -23,5 +23,13 @@ class LikesController < ApplicationController
 
   def likes_params
     params.require(:like).permit(:target_id, :target_type)
+  end
+
+  def redirect_after_like(like)
+    if like.target_type == 'Comment'
+      redirect_to @like.target.post
+    elsif like.target_type == 'Post'
+      redirect_to post_path(like.target)
+    end
   end
 end

@@ -6,7 +6,6 @@ RSpec.describe 'Likes', type: :system do
   let(:user) { create(:user) }
   let(:post) { create(:post, user:) }
   let(:comment) { create(:comment, post:, user:) }
-  let(:like_post) { create(:like, :with_post, user:) }
 
   before do
     driven_by :chrome
@@ -25,6 +24,23 @@ RSpec.describe 'Likes', type: :system do
     visit post_path(post)
     click_on('Unlike 1')
 
-    expect(page).not_to have_content('Like 0')
+    expect(page).to have_button('Like 0')
+  end
+
+  it 'add new like to comment' do
+    visit post_path(comment.post)
+    within('.actions.comment_like') do
+      click_button('Like 0')
+    end
+    expect(page).to have_content('Unlike 1')
+  end
+
+  it 'destroy like from comment' do
+    create(:like, user:, target: comment)
+    visit post_path(post)
+    within('.old_like') do
+      click_button('Unlike 1')
+    end
+    expect(page).to have_button('Like 0')
   end
 end
