@@ -4,10 +4,17 @@
 require 'spec_helper'
 require 'factory_bot_rails'
 require 'simplecov'
+require 'capybara/rspec'
+require 'selenium-webdriver'
 SimpleCov.start do
   add_filter '/config/application.rb'
 end
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new app, browser: :chrome,
+                                      options: Selenium::WebDriver::Chrome::Options.new(args: %w[headless disable-gpu])
+end
 
+Capybara.javascript_driver = :chrome
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 abort('The Rails environment is running in production mode!') if Rails.env.production?
@@ -23,5 +30,6 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
   config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::IntegrationHelpers, type: :system
   config.include FactoryBot::Syntax::Methods
 end
