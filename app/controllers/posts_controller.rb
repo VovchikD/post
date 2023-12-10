@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :find_post, only: %i[show destroy]
 
   def index
-    @pagy, @posts = pagy(Post.all.order(created_at: :desc), items: 10)
+    @pagy, @posts = pagy(Post.order(created_at: :desc), items: 10)
   end
 
   def show

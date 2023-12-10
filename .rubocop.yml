@@ -22,7 +22,7 @@ Rails/I18nLocaleTexts:
 
 Metrics/BlockLength:
   Enabled: true
-  Max: 35
+  Max: 45
   Exclude:
     - 'config/environments/**'
     - 'spec/system/comments_spec.rb'

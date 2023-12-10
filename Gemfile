@@ -27,12 +27,12 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'letter_opener', '~> 1.8.1'
+  gem 'pagy', '~> 6.2'
   gem 'rails-controller-testing'
   gem 'rspec'
   gem 'rspec-rails', '~> 6.0.0'
   gem 'rubocop-performance'
   gem 'simplecov', require: false
-  gem 'pagy', '~> 6.2'
 end
 group :development do
   gem 'web-console'

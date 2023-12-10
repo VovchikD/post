@@ -5,6 +5,7 @@ require 'rails_helper'
 RSpec.describe PostsController, type: :controller do
   let(:user) { create(:user) }
   let(:first_post) { create(:post) }
+  let(:comment) { create(:comment, post: first_post, user:) }
 
   before do
     sign_in(user)
@@ -13,6 +14,20 @@ RSpec.describe PostsController, type: :controller do
   it 'renders to index' do
     get :index
     expect(response).to render_template(:index)
+  end
+
+  it 'pagination posts' do
+    create_list(:post, 10)
+    get :index
+    pagy = assigns(:pagy)
+    expect(pagy.count).to eq(10)
+  end
+
+  it 'pagination comments' do
+    create_list(:comment, 10, post: first_post)
+    get :show, params: { id: first_post.id }
+    comment_pagy = assigns(:comment_pagy)
+    expect(comment_pagy.count).to eq(10)
   end
 
   it 'find post by id' do
