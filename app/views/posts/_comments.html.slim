@@ -1,4 +1,4 @@
-- @post.comments.where(parent_id: nil).each do |comment|
+- @comments.each do |comment|
   .old_like.block.max-w-lg.p-6.bg-white.border.border-gray-200.rounded-lg.shadow.dark:bg-gray-800.dark:border-gray-700.dark:hover-bg-gray-700.mt-5
     .text-base.tracking-tight.text-gray-900.dark:text-white = comment.content
     - like = current_user.likes.find_by(target: comment)

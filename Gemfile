@@ -32,6 +32,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 6.0.0'
   gem 'rubocop-performance'
   gem 'simplecov', require: false
+  gem 'pagy', '~> 6.2'
 end
 group :development do
   gem 'web-console'

@@ -20,5 +20,6 @@
       = button_to "Unlike #{@post.likes.count}", like_path(like), method: :delete, class: "text-white cursor-pointer bg-blue-700 dark:hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" 
       
     div.mt-12
+      == pagy_nav(@comment_pagy) if @comment_pagy.pages > 1
       = render partial: 'posts/comments'
       = render 'posts/form_comment'

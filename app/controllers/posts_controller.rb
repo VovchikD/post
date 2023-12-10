@@ -4,10 +4,12 @@ class PostsController < ApplicationController
   before_action :find_post, only: %i[show destroy]
 
   def index
-    @posts = Post.all
+    @pagy, @posts = pagy(Post.all.order(created_at: :desc), items: 10)
   end
 
-  def show; end
+  def show
+    @comment_pagy, @comments = pagy(@post.comments.where(parent_id: nil), items: 5)
+  end
 
   def new
     @post = Post.new
