@@ -27,6 +27,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'letter_opener', '~> 1.8.1'
+  gem 'pagy', '~> 6.2'
   gem 'rails-controller-testing'
   gem 'rspec'
   gem 'rspec-rails', '~> 6.0.0'

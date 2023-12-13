@@ -1,4 +1,4 @@
 .mx-auto.max-w-lg.mt-8.mt-15
   div class="grid grid-cols-1 md:grid-cols-3 gap-3"
-
+  == pagy_nav(@pagy) if @pagy.pages > 1
   = render partial: 'posts'

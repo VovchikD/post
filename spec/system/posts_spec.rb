@@ -38,4 +38,14 @@ RSpec.describe 'Posts', type: :system do
 
     expect(Post.count).to eq(0)
   end
+
+  it 'pagination posts' do
+    posts = create_list(:post, 11)
+    visit root_path
+    click_on('Next')
+    expect(page).to have_content(posts.last.title)
+
+    click_on('Prev')
+    expect(page).to have_content(posts.first.title)
+  end
 end

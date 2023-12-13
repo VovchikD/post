@@ -46,6 +46,7 @@ RSpec.describe 'Comments', type: :system do
   it 'validates comment' do
     visit post_path(first_post)
     fill_in 'comment_content', with: ''
+
     click_on('Add')
 
     expect(Comment.count).to eq(0)
@@ -56,5 +57,15 @@ RSpec.describe 'Comments', type: :system do
     fill_in 'comment_content', with: '', match: :first
     click_on('Reply')
     expect(Comment.where.not(parent_id: nil).count).to eq(0)
+  end
+
+  it 'pagination comments' do
+    comments = create_list(:comment, 10, post: first_post)
+    visit post_path(first_post)
+    click_on('Next')
+    expect(page).to have_content(comments.last.content)
+
+    click_on('Prev')
+    expect(page).to have_content(comments.first.content)
   end
 end
