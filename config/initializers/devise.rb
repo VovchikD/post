@@ -20,5 +20,9 @@ Devise.setup do |config|
                   Rails.application.credentials.dig(:google_auth, :client_id),
                   Rails.application.credentials.dig(:google_auth, :client_secret),
                   { access_type: 'offline' }
+  config.omniauth :facebook,
+                  Rails.application.credentials.dig(:facebook, :app_id),
+                  Rails.application.credentials.dig(:facebook, :app_secret),
+                  { access_type: 'offline', csrf: true }
 end
 OmniAuth.config.silence_get_warning = true
