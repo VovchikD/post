@@ -17,12 +17,22 @@ Devise.setup do |config|
   config.responder.error_status = :unprocessable_entity
   config.responder.redirect_status = :see_other
   config.omniauth :google_oauth2,
-                  Rails.application.credentials.dig(:google_auth, :client_id),
-                  Rails.application.credentials.dig(:google_auth, :client_secret),
-                  { access_type: 'offline' }
+                  Rails.application.credentials.dig(:google, :client_id),
+                  Rails.application.credentials.dig(:google, :client_secret),
+                  { 
+                    name: 'google',
+                    access_type: 'offline',
+                    image_aspect_ratio: 'square',
+                    scope: 'userinfo.email, userinfo.profile'
+                  }
   config.omniauth :facebook,
                   Rails.application.credentials.dig(:facebook, :app_id),
                   Rails.application.credentials.dig(:facebook, :app_secret),
-                  { access_type: 'offline', csrf: true }
+                  { 
+                    name: 'facebook',
+                    access_type: 'offline',
+                    image_aspect_ratio: 'square',
+                    scope: 'public_profile, email'
+                  }
 end
 OmniAuth.config.silence_get_warning = true

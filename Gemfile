@@ -9,6 +9,8 @@ gem 'bootsnap', require: false
 gem 'devise', '~> 4.9'
 gem 'importmap-rails'
 gem 'jbuilder'
+gem "koala", '~> 3.5'
+gem 'omniauth'
 gem 'omniauth-facebook', '~> 9.0.0'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
