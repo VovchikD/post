@@ -18,7 +18,7 @@ module Users
       if @user.persisted?
         success_authentication_face
       else
-        ailed_authentication_face
+        failed_authentication_face
       end
     end
 
