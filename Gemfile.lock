@@ -364,7 +364,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   letter_opener (~> 1.8.1)
-  omniauth
+  omniauth (~> 2.0)
   omniauth-facebook (~> 9.0.0)
   omniauth-google-oauth2
   omniauth-rails_csrf_protection (~> 1.0)
