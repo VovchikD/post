@@ -6,9 +6,9 @@ module Users
       @user = User.from_omniauth(request.env['omniauth.auth'])
 
       if @user.persisted?
-        success_authentication
+        success_google_oauth2
       else
-        failed_authentication
+        failed_google_oauth2
       end
     end
 
@@ -16,30 +16,30 @@ module Users
       @user = User.from_omniauth(request.env['omniauth.auth'])
 
       if @user.persisted?
-        success_authentication_face
+        success_facebook_auth
       else
-        failed_authentication_face
+        failed_facebook_auth
       end
     end
 
     private
 
-    def success_authentication_face
+    def success_facebook_auth
       sign_in_and_redirect @user, event: :authentication
       flash[:notice] = 'Success'
     end
 
-    def failed_authentication_face
+    def failed_facebook_auth
       session['devise.facebook_data'] = request.env['omniauth.auth'].except('extra')
       redirect_to new_user_registration_path, alert: @user.errors.full_messages
     end
 
-    def success_authentication
+    def success_google_oauth2
       sign_in_and_redirect @user, event: :authentication
       flash[:notice] = 'Success'
     end
 
-    def failed_authentication
+    def failed_google_oauth2
       session['devise.google_data'] = request.env['omniauth.auth'].except('extra')
       redirect_to new_user_registration_path, alert: @user.errors.full_messages
     end
