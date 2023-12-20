@@ -33,7 +33,7 @@ Devise.setup do |config|
                   Rails.application.credentials.dig(:facebook, :app_id),
                   Rails.application.credentials.dig(:facebook, :app_secret),
                   {
-                    name: 'facebook',
+                    name: 'facebook_oauth2',
                     scope: 'public_profile, email',
                     auth_type: 'reauthenticate',
                     provider_ignores_state: true

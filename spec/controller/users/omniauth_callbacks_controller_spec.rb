@@ -37,7 +37,7 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
       it 'redirects to success path' do
         allow(User).to receive(:from_omniauth).and_return(user)
         allow(user).to receive(:persisted?).and_return(true)
-        get :facebook
+        get :facebook_oauth2
         expect(response).to redirect_to(root_path)
       end
     end
@@ -47,7 +47,7 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
         allow(User).to receive(:from_omniauth).and_return(user)
         allow(user).to receive(:persisted?).and_return(false)
         allow(request.env['omniauth.auth']).to receive(:except).with('extra').and_return({})
-        get :facebook
+        get :facebook_oauth2
         expect(response).to redirect_to(new_user_registration_path)
       end
     end

@@ -12,24 +12,24 @@ module Users
       end
     end
 
-    def facebook
+    def facebook_oauth2
       @user = User.from_omniauth(request.env['omniauth.auth'])
 
       if @user.persisted?
-        success_facebook_auth
+        success_facebook_oauth2
       else
-        failed_facebook_auth
+        failed_facebook_oauth2
       end
     end
 
     private
 
-    def success_facebook_auth
+    def success_facebook_oauth2
       sign_in_and_redirect @user, event: :authentication
       flash[:notice] = 'Success'
     end
 
-    def failed_facebook_auth
+    def failed_facebook_oauth2
       session['devise.facebook_data'] = request.env['omniauth.auth'].except('extra')
       redirect_to new_user_registration_path, alert: @user.errors.full_messages
     end
