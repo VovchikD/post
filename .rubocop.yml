@@ -43,8 +43,4 @@ Naming/MemoizedInstanceVariableName:
 
 Metrics/AbcSize:
   Enabled: true
-
-Style/ClassAndModuleChildren:
-  Exclude:
-    - 'app/controllers/users/**'
-    - 'test/**/**'
+  

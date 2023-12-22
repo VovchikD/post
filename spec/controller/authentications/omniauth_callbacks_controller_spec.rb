@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Users::OmniauthCallbacksController, type: :controller do
+RSpec.describe Authentications::OmniauthCallbacksController, type: :controller do
   let(:user) { create(:user) }
   let(:auth_data) { OmniAuth.config.mock_auth[:facebook] }
   let(:auth_data) { OmniAuth.config.mock_auth[:google_oauth2] }
