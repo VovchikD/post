@@ -25,6 +25,7 @@ Metrics/BlockLength:
   Exclude:
     - 'config/environments/**'
     - 'spec/**/**'
+    - 'config/initializers/devise.rb'
 
 Metrics/MethodLength:
   Enabled: true
@@ -42,3 +43,4 @@ Naming/MemoizedInstanceVariableName:
 
 Metrics/AbcSize:
   Enabled: true
+  
