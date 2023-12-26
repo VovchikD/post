@@ -17,6 +17,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params.merge(user: current_user))
+    authorize @post
     if @post.save
       redirect_to root_url
     else
@@ -25,6 +26,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    authorize @post
     @post.destroy
     redirect_to root_url
   end

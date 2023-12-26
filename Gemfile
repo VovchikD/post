@@ -16,6 +16,7 @@ gem 'omniauth-rails_csrf_protection', '~> 1.0'
 gem 'pg', '~> 1.5.4'
 gem 'pry-byebug'
 gem 'puma', '~> 5.0'
+gem 'pundit', '~> 2.3.1'
 gem 'rails', '~> 7.0.8'
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
