@@ -17,7 +17,6 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params.merge(user: current_user))
-    authorize @post
     if @post.save
       redirect_to root_url
     else

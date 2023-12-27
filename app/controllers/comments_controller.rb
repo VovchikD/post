@@ -5,7 +5,6 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @post.comments.build(comment_params.merge(user: current_user))
-    authorize @comment
     if @comment.save
       CommentMailer.new_comment(author, @comment).deliver_later unless author == @comment.user
       redirect_to post_path(@post)
