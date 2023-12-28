@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe PostPolicy, type: :policy do
   let(:user) { create(:user) }
-  let(:admin) { create(:user, admin: true) }
+  let(:admin) { create(:user, :admin) }
   let(:first_post) { create(:post, user: admin) }
   let(:second_post) { create(:post, user:) }
 

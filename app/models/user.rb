@@ -10,7 +10,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[google_oauth2 facebook_oauth2]
   enum role: { default: 0, admin: 1 }
-  attr_accessor :admin
 
   def self.from_omniauth(auth)
     auth.info.name.split

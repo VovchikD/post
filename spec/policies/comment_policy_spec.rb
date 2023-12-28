@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe CommentPolicy, type: :policy do
   let(:user) { create(:user) }
-  let(:admin) { create(:user, admin: true) }
+  let(:admin) { create(:user, :admin) }
   let(:comment) { create(:comment, user: admin) }
   let(:second_comment) { create(:comment, user:) }
 
