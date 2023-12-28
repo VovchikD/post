@@ -10,12 +10,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[google_oauth2 facebook_oauth2]
   enum role: { default: 0, admin: 1 }
-  after_initialize :set_default_role, if: :new_record?
   attr_accessor :admin
-
-  def set_default_role
-    self.role ||= :default
-  end
 
   def self.from_omniauth(auth)
     auth.info.name.split
