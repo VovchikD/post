@@ -5,8 +5,7 @@ require 'rails_helper'
 RSpec.describe CommentPolicy, type: :policy do
   let(:user) { create(:user) }
   let(:admin) { create(:user, :admin) }
-  let(:comment) { create(:comment, user: admin) }
-  let(:second_comment) { create(:comment, user:) }
+  let(:comment) { create(:comment, user:) }
 
   subject { described_class.new(user, comment) }
 
@@ -16,7 +15,7 @@ RSpec.describe CommentPolicy, type: :policy do
   end
 
   it 'allows destroy comment for a signed-in user' do
-    subject = described_class.new(user, second_comment)
+    subject = described_class.new(user, comment)
     expect(subject.destroy?).to be_truthy
   end
 end
