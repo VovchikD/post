@@ -4,8 +4,8 @@ require 'rails_helper'
 
 RSpec.describe 'Likes', type: :system do
   let(:user) { create(:user) }
-  let(:post) { create(:post, user:) }
-  let(:comment) { create(:comment, post:, user:) }
+  let(:post) { create(:post, user: user) }
+  let(:comment) { create(:comment, post:, user: user) }
 
   before do
     driven_by :chrome

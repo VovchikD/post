@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe CommentPolicy, type: :policy do
   let(:user) { create(:user) }
   let(:admin) { create(:user, :admin) }
-  let(:comment) { create(:comment, user:) }
+  let(:comment) { create(:comment, user: user) }
 
   subject { described_class.new(user, comment) }
 

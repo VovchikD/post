@@ -43,4 +43,8 @@ Naming/MemoizedInstanceVariableName:
 
 Metrics/AbcSize:
   Enabled: true
-  
+
+Style/HashSyntax:
+  Enabled: true
+  Exclude:
+    - 'spec/**/**'
