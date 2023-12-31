@@ -9,6 +9,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[google_oauth2 facebook_oauth2]
+  enum role: { default: 0, admin: 1 }
 
   def self.from_omniauth(auth)
     auth.info.name.split

@@ -2,7 +2,8 @@
   .block.max-w-lg.p-6.bg-white.rounded-lg.dark:bg-gray-800.dark:border-gray-700.dark:hover:bg-gray-700.mt-5
     .flex.justify-between
       = link_to raw('&#8592; Back to posts'), root_path, class: "btn btn-sm btn-outline-secondary"
-      = button_to "Destroy this post", post_path(@post), method: :delete, class: "text-red-600 text-xs cursor-pointer dark:text-red-500 dark:hover:bg-red-600"
+      - if policy(@post).destroy? 
+        = button_to "Destroy this post", post_path(@post), method: :delete, class: "text-red-600 text-xs cursor-pointer dark:text-red-500 dark:hover:bg-red-600"
 
     .mb-2.text-2xl.font-bold.tracking-tight.text-gray-900.dark:text-white.mt-7 = @post.title
     .font-normal.text-gray-700.dark:text-gray-400 = @post.body
