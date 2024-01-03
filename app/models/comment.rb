@@ -9,11 +9,7 @@ class Comment < ApplicationRecord
   validates :content, presence: true
   scope :unseen, -> { where(seen: false) }
 
-  def self.unseen_comments
-    unseen.order(created_at: :desc)
-  end
-
-  def seen_comments
-    update(seen: true)
+  def mark_seen
+    update!(seen: true)
   end
 end

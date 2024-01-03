@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 every 1.hour do
-  runner 'EmailJob.perform'
+  runner 'SendEmailJob.perform_later'
 end

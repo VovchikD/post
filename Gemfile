@@ -28,7 +28,7 @@ gem 'stimulus-rails'
 gem 'tailwindcss-rails', '~> 2.0'
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-gem 'whenever', require: false
+gem 'whenever', '~> 1.0.0', require: false
 
 group :development, :test do
   gem 'factory_bot_rails'
