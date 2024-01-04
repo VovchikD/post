@@ -10,6 +10,6 @@ class Comment < ApplicationRecord
   scope :unseen, -> { where(seen: false) }
 
   def mark_seen
-    update!(seen: true)
+    update(seen: true)
   end
 end
