@@ -8,8 +8,4 @@ class Comment < ApplicationRecord
   has_many :likes, as: :target, dependent: :destroy
   validates :content, presence: true
   scope :unseen, -> { where(seen: false) }
-
-  def mark_seen
-    update(seen: true)
-  end
 end
