@@ -4,10 +4,9 @@ class UnseenCommentsNotificationJob < ApplicationJob
   queue_as :default
 
   def perform
-    User.includes(:comments).where(comments: { seen: false }).distinct.each do |user|
-      comments = user.comments.unseen.to_a
-      CommentMailer.unseen_comments_notification(user, comments).deliver_later
-      Comment.where(user_id: user.id, seen: false).update(seen: true)
+    User.includes(:comments).where(comments: { seen: false }).find_each do |user|
+      CommentMailer.unseen_comments_notification(user.id).deliver_later
+      user.comments.unseen.update_all(seen: true)
     end
   end
 end
