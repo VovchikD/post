@@ -9,6 +9,12 @@ class PostsController < ApplicationController
 
   def show
     @comment_pagy, @comments = pagy(@post.comments.where(parent_id: nil), items: 5)
+
+    return unless user_signed_in? && current_user == @post.user
+
+    @post.comments.each do |comment|
+      comment.update(seen: true)
+    end
   end
 
   def new
