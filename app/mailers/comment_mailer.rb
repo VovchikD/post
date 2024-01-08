@@ -9,8 +9,8 @@ class CommentMailer < ApplicationMailer
     )
   end
 
-  def notification_user_of_new_comments(user, _comments)
-    @comments = Comment.where(seen: false)
+  def unseen_comments_notification(user, comments)
+    @comments = comments
     mail(to: user.email, subject: "New Comment Notification - #{@comments.size} new comments") unless @comments.empty?
   end
 end

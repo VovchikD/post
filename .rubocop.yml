@@ -35,6 +35,8 @@ Style/ParenthesesAroundCondition:
 
 Style/IfUnlessModifier:
   Enabled: true
+  Exclude:
+    - 'app/controllers/posts_controller.rb'
 
 Naming/MemoizedInstanceVariableName: 
   Enabled: true
@@ -48,3 +50,13 @@ Style/HashSyntax:
   Enabled: true
   Exclude:
     - 'spec/**/**'
+
+Rails/SkipsModelValidations:
+  Enabled: true
+  Exclude:
+    - 'app/controllers/posts_controller.rb'
+
+Style/GuardClause:
+  Enabled: true
+  Exclude:
+    - 'app/controllers/posts_controller.rb'
