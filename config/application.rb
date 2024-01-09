@@ -12,6 +12,15 @@ module Postapp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
+    config.active_job.queue_adapter = :sidekiq
+
+    Sidekiq.configure_server do |config|
+      config.redis = { url: 'redis://localhost:6379/0' }
+    end
+
+    Sidekiq.configure_client do |config|
+      config.redis = { url: 'redis://localhost:6379/0' }
+    end
 
     # Configuration for the application, engines, and railties goes here.
     #

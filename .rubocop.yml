@@ -48,3 +48,14 @@ Style/HashSyntax:
   Enabled: true
   Exclude:
     - 'spec/**/**'
+
+Rails/SkipsModelValidations:
+  Enabled: true
+  Exclude:
+    - 'app/controllers/posts_controller.rb'
+    - 'app/jobs/unseen_comments_notification_job.rb'
+
+Style/GuardClause:
+  Enabled: true
+  Exclude:
+    - 'app/controllers/posts_controller.rb'
