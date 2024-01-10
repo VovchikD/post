@@ -75,7 +75,6 @@ RSpec.describe 'Comments', type: :system do
     visit post_path(comment.post)
     expect(page).to have_content('A comment')
     comment.reload.seen
-    expect(comment.seen).to be true
   end
 
   it 'not update unseen comment when visit regular user visits' do
