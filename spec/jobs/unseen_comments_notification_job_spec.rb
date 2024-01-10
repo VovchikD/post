@@ -20,4 +20,14 @@ RSpec.describe UnseenCommentsNotificationJob, type: :job do
       end
     end.to change { ActionMailer::Base.deliveries.size }.by(1)
   end
+
+  it 'sends an email every hour' do
+    create(:comment, user: user, seen: false)
+    expect do
+      perform_enqueued_jobs do
+        Timecop.travel(1.hour.from_now)
+        UnseenCommentsNotificationJob.perform_later
+      end
+    end.to change { ActionMailer::Base.deliveries.size }.by(1)
+  end
 end
