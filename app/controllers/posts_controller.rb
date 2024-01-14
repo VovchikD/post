@@ -17,8 +17,8 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params.merge(user: current_user))
-    if @post.save
+    post = PostCreation.new(current_user, post_params)
+    if post.post_create
       redirect_to root_url
     else
       render :new
