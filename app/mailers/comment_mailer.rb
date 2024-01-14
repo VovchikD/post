@@ -8,4 +8,10 @@ class CommentMailer < ApplicationMailer
       subject: 'New massege under your post'
     )
   end
+
+  def unseen_comments_notification(user_id)
+    @user = User.find(user_id)
+    @comments = @user.comments.unseen
+    mail(to: @user.email, subject: "New Comment Notification - #{@comments.size} new comments") unless @comments.empty?
+  end
 end

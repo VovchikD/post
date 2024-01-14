@@ -4,8 +4,10 @@ require 'rails_helper'
 
 RSpec.describe 'Comments', type: :system do
   let(:user) { create(:user) }
+  let(:regular_user) { create(:user) }
   let(:first_post) { create(:post, user: user) }
-  let(:comment) { create(:comment, post: first_post, user: user) }
+  let(:second_comment) { create(:comment, post: first_post, user: user) }
+  let(:comment) { create(:comment, post: first_post, user: regular_user, seen: false) }
 
   before do
     driven_by :chrome
@@ -25,7 +27,7 @@ RSpec.describe 'Comments', type: :system do
     visit post_path(first_post)
     click_on('Destroy')
 
-    expect(page).not_to have_content(comment)
+    expect(page).not_to have_content(second_comment)
     expect(Comment.last).to be_nil
   end
 
@@ -67,5 +69,18 @@ RSpec.describe 'Comments', type: :system do
 
     click_on('Prev')
     expect(page).to have_content(comments.first.content)
+  end
+
+  it 'update unseen comment when visit owner comment' do
+    visit post_path(comment.post)
+    expect(page).to have_content('A comment')
+    expect(comment.reload.seen).to be true
+  end
+
+  it 'not update unseen comment when visit regular user visits' do
+    sign_in regular_user
+    visit post_path(comment.post)
+    expect(page).to have_content('A comment')
+    expect(comment.reload.seen).to be false
   end
 end

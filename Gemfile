@@ -20,6 +20,7 @@ gem 'pundit', '~> 2.3.1'
 gem 'rails', '~> 7.0.8'
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
+gem 'sidekiq', '~> 7.2'
 gem 'slim_lint', '~> 0.24.0'
 gem 'slim-rails', '~> 3.6'
 gem 'sprockets-rails'
@@ -27,6 +28,7 @@ gem 'stimulus-rails'
 gem 'tailwindcss-rails', '~> 2.0'
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'whenever', '~> 1.0.0', require: false
 
 group :development, :test do
   gem 'factory_bot_rails'
@@ -45,4 +47,5 @@ end
 group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'timecop', '~> 0.9.8'
 end
