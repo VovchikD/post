@@ -6,7 +6,11 @@ class PostCreation
     @post_params = post_params
   end
 
-  def post_create
+  def self.call(user, post_params)
+    new(user, post_params)
+  end
+
+  def call
     post = Post.new(@post_params.merge(user: @user))
     return post if post.save
 
