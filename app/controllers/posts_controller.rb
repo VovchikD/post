@@ -18,7 +18,7 @@ class PostsController < ApplicationController
 
   def create
     post = PostCreation.call(current_user, post_params)
-    if post.call
+    if post
       redirect_to root_url
     else
       render :new
