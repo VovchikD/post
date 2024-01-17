@@ -48,7 +48,8 @@ Style/HashSyntax:
   Enabled: true
   Exclude:
     - 'spec/**/**'
-    - app/services/post_creation.rb
+    - app/services/posts/create.rb
+    - app/controllers/posts_controller.rb
 
 Rails/SkipsModelValidations:
   Enabled: true
