@@ -22,6 +22,7 @@ class PostsController < ApplicationController
     if result[:status] == :success
       redirect_to root_url
     else
+      @post = result[:record]
       render :new
     end
   end
