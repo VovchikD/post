@@ -17,7 +17,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    result = Posts::Create.call(user: current_user, post_params: post_params)
+    result = Posts::Creation.call(user: current_user, post_params: post_params)
 
     if result[:status] == :success
       redirect_to root_url
