@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Posts
-  class Creation
+  class Create
     def initialize(user:, post_params:)
       @user = user
       @post_params = post_params
