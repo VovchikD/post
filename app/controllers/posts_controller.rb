@@ -17,10 +17,12 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params.merge(user: current_user))
-    if @post.save
+    result = Posts::Create.call(user: current_user, post_params: post_params)
+
+    if result[:status] == :success
       redirect_to root_url
     else
+      @post = result[:record]
       render :new
     end
   end
