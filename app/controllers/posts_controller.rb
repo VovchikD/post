@@ -8,8 +8,9 @@ class PostsController < ApplicationController
   end
 
   def show
-    @comment_pagy, @comments = pagy(@post.comments.where(parent_id: nil), items: 5)
-    @post.comments.update_all(seen: true) if current_user == @post.user
+    result = Posts::Show.call(post: @post, user: current_user, params: params)
+    @post = result[:post]
+    @comment_pagy, @comments = result[:comments]
   end
 
   def new
@@ -29,8 +30,12 @@ class PostsController < ApplicationController
 
   def destroy
     authorize @post
-    @post.destroy
-    redirect_to root_url
+    result = Posts::Destroy.call(post: @post)
+    if result[:status] == :success
+      redirect_to root_url
+    else
+      @post = result[:record]
+    end
   end
 
   private
