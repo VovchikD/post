@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 module Likes
-  class Destroy
+  class Destroy < BaseService
     def initialize(user:, like_id:)
+      super()
       @user = user
       @like_id = like_id
     end
@@ -14,20 +15,10 @@ module Likes
     def call
       @like = @user.likes.find(@like_id)
       if @like.destroy
-        success_result
+        success_result(@like)
       else
-        failure_result
+        failure_result(@like)
       end
-    end
-
-    private
-
-    def success_result
-      { status: :success, record: @like }
-    end
-
-    def failure_result
-      { status: :failure, record: @like }
     end
   end
 end

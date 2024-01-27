@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 module Comments
-  class Create
+  class Create < BaseService
     def initialize(user:, post:, comment_params:)
+      super()
       @user = user
       @post = post
       @comment_params = comment_params
@@ -16,21 +17,13 @@ module Comments
       @comment = @post.comments.build(@comment_params.merge(user: @user))
       if @comment.save
         CommentMailer.new_comment(author, @comment).deliver_later unless author == @comment.user
-        success_result
+        success_result(@comment)
       else
-        failure_result
+        failure_result(@comment)
       end
     end
 
     private
-
-    def success_result
-      { status: :success, record: @comment }
-    end
-
-    def failure_result
-      { status: :failure, record: @comment }
-    end
 
     def author
       @author ||= @post.user

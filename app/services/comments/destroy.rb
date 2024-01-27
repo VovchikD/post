@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 module Comments
-  class Destroy
+  class Destroy < BaseService
     def initialize(comment:)
+      super()
       @comment = comment
     end
 
@@ -12,20 +13,10 @@ module Comments
 
     def call
       if @comment.destroy
-        success_result
+        success_result(@comment)
       else
-        failure_result
+        failure_result(@comment)
       end
-    end
-
-    private
-
-    def success_result
-      { status: :success, record: @comment }
-    end
-
-    def failure_result
-      { status: :failure, record: @comment }
     end
   end
 end

@@ -8,9 +8,9 @@ class PostsController < ApplicationController
   end
 
   def show
-    result = Posts::Show.call(post: @post, user: current_user, params: params)
+    result = Posts::Show.call(post: @post, user: current_user)
     @post = result[:post]
-    @comment_pagy, @comments = result[:comments]
+    @comment_pagy, @comments = pagy(@post.comments.where(parent_id: nil), items: 5)
   end
 
   def new

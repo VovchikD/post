@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 module Posts
-  class Destroy
+  class Destroy < BaseService
     def initialize(post:)
+      super()
       @post = post
     end
 
@@ -12,20 +13,10 @@ module Posts
 
     def call
       if @post.destroy
-        success_result
+        success_result(@post)
       else
-        failure_result
+        failure_result(@post)
       end
-    end
-
-    private
-
-    def success_result
-      { status: :success, record: @post }
-    end
-
-    def failure_result
-      { status: :failure, record: @post }
     end
   end
 end
