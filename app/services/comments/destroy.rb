@@ -3,7 +3,6 @@
 module Comments
   class Destroy < BaseService
     def initialize(comment:)
-      super()
       @comment = comment
     end
 

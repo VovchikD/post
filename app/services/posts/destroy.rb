@@ -3,7 +3,6 @@
 module Posts
   class Destroy < BaseService
     def initialize(post:)
-      super()
       @post = post
     end
 

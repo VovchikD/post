@@ -13,7 +13,7 @@ module Posts
 
     def call
       update_comments_seen if @user == @post.user
-      { post: @post }
+      { status: :success, record: @post }
     end
 
     private

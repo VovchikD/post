@@ -9,7 +9,7 @@ class PostsController < ApplicationController
 
   def show
     result = Posts::Show.call(post: @post, user: current_user)
-    @post = result[:post]
+    @post = result[:record] if result[:status] == :success
     @comment_pagy, @comments = pagy(@post.comments.where(parent_id: nil), items: 5)
   end
 

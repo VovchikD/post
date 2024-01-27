@@ -3,7 +3,6 @@
 module Likes
   class Destroy < BaseService
     def initialize(user:, like_id:)
-      super()
       @user = user
       @like_id = like_id
     end

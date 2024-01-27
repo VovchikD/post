@@ -3,7 +3,6 @@
 module Comments
   class Create < BaseService
     def initialize(user:, post:, comment_params:)
-      super()
       @user = user
       @post = post
       @comment_params = comment_params

@@ -3,7 +3,6 @@
 module Likes
   class Create < BaseService
     def initialize(user:, likes_params:)
-      super()
       @user = user
       @likes_params = likes_params
     end

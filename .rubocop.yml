@@ -50,7 +50,7 @@ Style/HashSyntax:
     - 'spec/**/**'
     - app/services/posts/create.rb
     - app/controllers/**
-    - app/services/posts/creation.rb
+    - app/services/**/*
 
 Rails/SkipsModelValidations:
   Enabled: true
@@ -63,3 +63,7 @@ Style/GuardClause:
   Enabled: true
   Exclude:
     - 'app/controllers/posts_controller.rb'
+
+Lint/MissingSuper:
+  Exclude:
+    - 'app/services/**/*'

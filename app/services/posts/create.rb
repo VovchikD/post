@@ -3,7 +3,6 @@
 module Posts
   class Create < BaseService
     def initialize(user:, post_params:)
-      super()
       @user = user
       @post_params = post_params
     end
