@@ -2,7 +2,7 @@
 
 class LikesController < ApplicationController
   def create
-    result = Likes::Create.call(user: current_user, likes_params: likes_params)
+    result = Likes::Create.call(user: current_user, like_params: like_params)
     if result[:status] == :success
       redirect_after_like(result[:record])
     else
@@ -11,7 +11,8 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    result = Likes::Destroy.call(user: current_user, like_id: params[:id])
+    like = current_user.likes.find(params[:id])
+    result = Likes::Destroy.call(like: like)
 
     if result[:status] == :success
       redirect_after_like(result[:record])
@@ -22,7 +23,7 @@ class LikesController < ApplicationController
 
   private
 
-  def likes_params
+  def like_params
     params.require(:like).permit(:target_id, :target_type)
   end
 

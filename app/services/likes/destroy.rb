@@ -2,17 +2,15 @@
 
 module Likes
   class Destroy < BaseService
-    def initialize(user:, like_id:)
-      @user = user
-      @like_id = like_id
+    def initialize(like:)
+      @like = like
     end
 
-    def self.call(user:, like_id:)
-      new(user:, like_id:).call
+    def self.call(like:)
+      new(like:).call
     end
 
     def call
-      @like = @user.likes.find(@like_id)
       if @like.destroy
         success_result(@like)
       else

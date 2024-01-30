@@ -2,17 +2,17 @@
 
 module Likes
   class Create < BaseService
-    def initialize(user:, likes_params:)
+    def initialize(user:, like_params:)
       @user = user
-      @likes_params = likes_params
+      @like_params = like_params
     end
 
-    def self.call(user:, likes_params:)
-      new(user:, likes_params:).call
+    def self.call(user:, like_params:)
+      new(user:, like_params:).call
     end
 
     def call
-      @like = @user.likes.new(@likes_params)
+      @like = @user.likes.new(@like_params)
 
       if @like.save
         success_result(@like)
