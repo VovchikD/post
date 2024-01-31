@@ -2,6 +2,7 @@
 
 class LikesController < ApplicationController
   before_action :find_like, only: [:destroy]
+
   def create
     result = Likes::Create.call(user: current_user, like_params: like_params)
     if result[:status] == :success
@@ -36,6 +37,6 @@ class LikesController < ApplicationController
   end
 
   def find_like
-    @like = current_user.likes.find(params[:id])
+    @like ||= current_user.likes.find(params[:id])
   end
 end
