@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class LikesController < ApplicationController
+  before_action :find_like, only: [:destroy]
   def create
     result = Likes::Create.call(user: current_user, like_params: like_params)
     if result[:status] == :success
@@ -11,8 +12,7 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    like = current_user.likes.find(params[:id])
-    result = Likes::Destroy.call(like: like)
+    result = Likes::Destroy.call(like: @like)
 
     if result[:status] == :success
       redirect_after_like(result[:record])
@@ -33,5 +33,9 @@ class LikesController < ApplicationController
     elsif like.target_type == 'Post'
       redirect_to post_path(like.target)
     end
+  end
+
+  def find_like
+    @like = current_user.likes.find(params[:id])
   end
 end
