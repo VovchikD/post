@@ -4,11 +4,12 @@ class CommentsController < ApplicationController
   before_action :find_post, only: [:create]
 
   def create
-    @comment = @post.comments.build(comment_params.merge(user: current_user))
-    if @comment.save
-      CommentMailer.new_comment(author, @comment).deliver_later unless author == @comment.user
+    result = Comments::Create.call(user: current_user, post: @post, comment_params: comment_params)
+
+    if result[:status] == :success
       redirect_to post_path(@post)
     else
+      @comment = result[:record]
       render 'posts/show'
     end
   end
@@ -16,15 +17,16 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     authorize @comment
-    @comment.destroy
-    redirect_to post_path
+
+    result = Comments::Destroy.call(comment: @comment)
+    if result[:status] == :success
+      redirect_to post_path
+    else
+      @comment = result[:record]
+    end
   end
 
   private
-
-  def author
-    @author ||= @post.user
-  end
 
   def find_post
     @post ||= Post.find(params[:post_id])

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Posts
-  class Create
+  class Create < BaseService
     def initialize(user:, post_params:)
       @user = user
       @post_params = post_params
@@ -15,20 +15,10 @@ module Posts
       @post = @user.posts.build(@post_params)
 
       if @post.save
-        success_result
+        success_result(@post)
       else
-        failure_result
+        failure_result(@post)
       end
-    end
-
-    private
-
-    def success_result
-      { status: :success, record: @post }
-    end
-
-    def failure_result
-      { status: :failure, record: @post }
     end
   end
 end

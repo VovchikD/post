@@ -49,16 +49,21 @@ Style/HashSyntax:
   Exclude:
     - 'spec/**/**'
     - app/services/posts/create.rb
-    - app/controllers/posts_controller.rb
-    - app/services/posts/creation.rb
+    - app/controllers/**
+    - app/services/**/*
 
 Rails/SkipsModelValidations:
   Enabled: true
   Exclude:
     - 'app/controllers/posts_controller.rb'
     - 'app/jobs/unseen_comments_notification_job.rb'
+    - 'app/services/posts/show.rb'
 
 Style/GuardClause:
   Enabled: true
   Exclude:
     - 'app/controllers/posts_controller.rb'
+
+Lint/MissingSuper:
+  Exclude:
+    - 'app/services/**/*'

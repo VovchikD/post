@@ -1,19 +1,22 @@
 # frozen_string_literal: true
 
 class LikesController < ApplicationController
+  before_action :find_like, only: [:destroy]
+
   def create
-    @like = current_user.likes.new(likes_params)
-    if @like.save
-      redirect_after_like(@like)
+    result = Likes::Create.call(user: current_user, like_params: like_params)
+    if result[:status] == :success
+      redirect_after_like(result[:record])
     else
       flash[:alert] = @like.errors.full_messages
     end
   end
 
   def destroy
-    @like = current_user.likes.find(params[:id])
-    if @like.destroy
-      redirect_after_like(@like)
+    result = Likes::Destroy.call(like: @like)
+
+    if result[:status] == :success
+      redirect_after_like(result[:record])
     else
       flash[:alert] = 'Like not found'
     end
@@ -21,15 +24,19 @@ class LikesController < ApplicationController
 
   private
 
-  def likes_params
+  def like_params
     params.require(:like).permit(:target_id, :target_type)
   end
 
   def redirect_after_like(like)
     if like.target_type == 'Comment'
-      redirect_to @like.target.post
+      redirect_to like.target.post
     elsif like.target_type == 'Post'
       redirect_to post_path(like.target)
     end
+  end
+
+  def find_like
+    @like ||= current_user.likes.find(params[:id])
   end
 end
