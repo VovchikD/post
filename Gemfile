@@ -7,6 +7,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.2.2'
 gem 'bootsnap', require: false
 gem 'devise', '~> 4.9'
+gem 'draper', '~> 4.0.2'
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'omniauth', '~> 2.0'
@@ -45,7 +46,7 @@ group :development do
   gem 'web-console'
 end
 group :test do
-  gem 'capybara'
+  gem 'capybara', '~> 3.39.2'
   gem 'selenium-webdriver'
   gem 'timecop', '~> 0.9.8'
 end
