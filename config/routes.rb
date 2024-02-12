@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   end
   root to: 'posts#index'
   resources :comments, only: %i[destroy]
+  namespace :api do
+    resources :posts, only: %i[index show]
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

@@ -76,6 +76,7 @@ GEM
     base64 (0.2.0)
     bcrypt (3.1.19)
     bindex (0.8.1)
+    blueprinter (1.0.2)
     bootsnap (1.17.0)
       msgpack (~> 1.2)
     builder (3.2.4)
@@ -383,6 +384,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  blueprinter (~> 1.0.2)
   bootsnap
   capybara (~> 3.39.2)
   devise (~> 4.9)
