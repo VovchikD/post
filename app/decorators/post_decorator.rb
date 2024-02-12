@@ -10,4 +10,12 @@ class PostDecorator < ApplicationDecorator
   def formatted_body
     body.capitalize
   end
+
+  def formatted_like
+    "👍 #{likes.count}"
+  end
+
+  def formatted_unlike
+    "👎 #{likes.count}"
+  end
 end

@@ -6,4 +6,12 @@ class CommentDecorator < ApplicationDecorator
   def formatted_content
     content.capitalize
   end
+
+  def formatted_like
+    "👍 #{likes.count}"
+  end
+
+  def formatted_unlike
+    "👎 #{likes.count}"
+  end
 end
