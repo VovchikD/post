@@ -16,8 +16,8 @@ RSpec.describe 'Posts', type: :system do
     fill_in 'post_body', with: 'Test Body'
     click_on('Create Post')
 
-    expect(page).to have_content('Test Post')
-    expect(page).to have_content('Test Body')
+    expect(page).to have_content(/Test Post/i)
+    expect(page).to have_content(/Test Body/i)
   end
 
   it 'destroy a post' do

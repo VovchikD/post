@@ -14,33 +14,33 @@ RSpec.describe 'Likes', type: :system do
 
   it 'add new like to post' do
     visit post_path(post)
-    click_on('Like 0')
+    click_on('👍 0')
 
-    expect(page).to have_content('Unlike 1')
+    expect(page).to have_content('👎 1')
   end
 
   it 'destroy like from post' do
     create(:like, user:, target: post)
     visit post_path(post)
-    click_on('Unlike 1')
+    click_on('👎 1')
 
-    expect(page).to have_button('Like 0')
+    expect(page).to have_button('👍 0')
   end
 
   it 'add new like to comment' do
     visit post_path(comment.post)
     within('.actions.comment_like') do
-      click_button('Like 0')
+      click_button('👍 0')
     end
-    expect(page).to have_content('Unlike 1')
+    expect(page).to have_content('👎 1')
   end
 
   it 'destroy like from comment' do
     create(:like, user:, target: comment)
     visit post_path(post)
     within('.old_like') do
-      click_button('Unlike 1')
+      click_button('👎 1')
     end
-    expect(page).to have_button('Like 0')
+    expect(page).to have_button('👍 0')
   end
 end
