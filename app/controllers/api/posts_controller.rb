@@ -10,5 +10,32 @@ module Api
       post = Post.find(params[:id])
       render json: PostSerializer.render(post)
     end
+
+    def create
+      result = Posts::Create.call(user: current_user, post_params: post_params)
+
+      if result[:status] == :success
+        render json: PostSerializer.render(result[:record])
+      else
+        render json: { errors: result[:record] }
+      end
+    end
+
+    def destroy
+      @post = Post.find(params[:id])
+      authorize @post
+      result = Posts::Destroy.call(post: @post)
+      if result[:status] == :success
+        head :no_content
+      else
+        render json: { errors: result[:record] }
+      end
+    end
+
+    private
+
+    def post_params
+      params.require(:post).permit(:title, :body)
+    end
   end
 end

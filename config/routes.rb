@@ -15,7 +15,11 @@ Rails.application.routes.draw do
   root to: 'posts#index'
   resources :comments, only: %i[destroy]
   namespace :api do
-    resources :posts, only: %i[index show]
+    resources :posts, only: %i[index show create destroy] do
+      resources :comments, only: %i[create destroy]
+    end
+    resources :likes, only: %i[create destroy]
+    resources :comments, only: %i[destroy]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

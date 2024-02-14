@@ -3,5 +3,5 @@
 class PostSerializer < Blueprinter::Base
   identifier :id
 
-  fields :title, :body
+  fields :title, :body, :created_at
 end
