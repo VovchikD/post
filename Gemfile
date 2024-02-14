@@ -8,6 +8,7 @@ ruby '3.2.2'
 gem 'blueprinter', '~> 1.0.2'
 gem 'bootsnap', require: false
 gem 'devise', '~> 4.9'
+gem 'devise-jwt', '~> 0.10.0'
 gem 'draper', '~> 4.0.2'
 gem 'importmap-rails'
 gem 'jbuilder'
@@ -19,6 +20,7 @@ gem 'pg', '~> 1.5.4'
 gem 'pry-byebug'
 gem 'puma', '~> 5.0'
 gem 'pundit', '~> 2.3.1'
+gem 'rack-cors', '~> 2.0.1'
 gem 'rails', '~> 7.0.8'
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false

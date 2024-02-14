@@ -19,6 +19,17 @@ Devise.setup do |config|
   config.responder.error_status = :unprocessable_entity
   config.responder.redirect_status = :see_other
 
+  config.jwt do |jwt|
+    jwt.secret = Rails.application.credentials.devise_jwt_secret_key!
+    jwt.dispatch_requests = [
+      ['POST', %r{^/login$}]
+    ]
+    jwt.revocation_requests = [
+      ['DELETE', %r{^/logout$}]
+    ]
+    jwt.expiration_time = 30.minutes.to_i
+  end
+
   config.omniauth :google_oauth2,
                   Rails.application.credentials.dig(:google, :client_id),
                   Rails.application.credentials.dig(:google, :client_secret),
