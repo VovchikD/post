@@ -20,6 +20,11 @@ Rails.application.routes.draw do
     end
     resources :likes, only: %i[create destroy]
     resources :comments, only: %i[destroy]
+    devise_scope :user do
+      post '/sessions' => 'sessions#create'
+      delete '/sessions' => 'sessions#destroy'
+      post '/registrations' => 'registrations#create'
+    end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
