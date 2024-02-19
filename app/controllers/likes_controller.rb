@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class LikesController < ApplicationController
+class LikesController < BaseController
   before_action :find_like, only: [:destroy]
 
   def create

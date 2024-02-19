@@ -6,11 +6,17 @@ class User < ApplicationRecord
   has_many :liked_posts, through: :likes, source: :target, source_type: 'Post'
   has_many :posts,    dependent: :destroy
   has_many :comments, dependent: :destroy
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers: %i[google_oauth2 facebook_oauth2]
-  enum role: { default: 0, admin: 1 }
+  devise :database_authenticatable,
+         :jwt_authenticatable,
+         :registerable,
+         :recoverable,
+         :rememberable,
+         :validatable,
+         :omniauthable,
+         jwt_revocation_strategy: JwtDenylist,
+         omniauth_providers: %i[google_oauth2 facebook_oauth2]
 
+  enum role: { default: 0, admin: 1 }
   def self.from_omniauth(auth)
     auth.info.name.split
     user = User.where(email: auth.info.email).first

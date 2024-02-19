@@ -49,7 +49,7 @@ Style/HashSyntax:
   Exclude:
     - 'spec/**/**'
     - app/services/posts/create.rb
-    - app/controllers/**
+    - app/controllers/**/*
     - app/services/**/*
 
 Rails/SkipsModelValidations:
