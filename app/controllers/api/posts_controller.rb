@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Api
-  class PostsController < Api::ApplicationController
+  class PostsController < Api::BaseController
     def index
       render json: PostSerializer.render(Post.all)
     end

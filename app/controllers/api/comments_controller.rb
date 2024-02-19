@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Api
-  class CommentsController < Api::ApplicationController
+  class CommentsController < Api::BaseController
     def create
       @post = Post.find(params[:post_id])
       result = Comments::Create.call(user: current_user, post: @post, comment_params: comment_params)

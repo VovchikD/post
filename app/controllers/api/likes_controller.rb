@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Api
-  class LikesController < Api::ApplicationController
+  class LikesController < Api::BaseController
     def create
       result = Likes::Create.call(user: current_user, like_params: like_params)
       if result[:status] == :success

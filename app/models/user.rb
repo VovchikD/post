@@ -7,11 +7,12 @@ class User < ApplicationRecord
   has_many :posts,    dependent: :destroy
   has_many :comments, dependent: :destroy
   devise :database_authenticatable,
+         :jwt_authenticatable,
          :registerable,
          :recoverable,
          :rememberable,
          :validatable,
-         :omniauthable, :jwt_authenticatable,
+         :omniauthable,
          jwt_revocation_strategy: JwtDenylist,
          omniauth_providers: %i[google_oauth2 facebook_oauth2]
 
