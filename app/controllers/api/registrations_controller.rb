@@ -2,7 +2,6 @@
 
 module Api
   class RegistrationsController < Devise::RegistrationsController
-    include RackSessionsFix
     respond_to :json
     skip_before_action :verify_authenticity_token
 

@@ -3,7 +3,6 @@
 module Api
   class SessionsController < Devise::SessionsController
     respond_to :json
-
     skip_before_action :verify_authenticity_token
 
     private
@@ -24,11 +23,7 @@ module Api
         current_user = User.find(jwt_payload['sub'])
       end
 
-      if current_user
-        success_log_out
-      else
-        fail_log_out
-      end
+      current_user ? success_log_out : fail_log_out
     end
 
     def success_log_out
